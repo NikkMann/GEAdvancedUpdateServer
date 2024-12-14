@@ -1,0 +1,222 @@
+Code "GE_GodrayUp"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int GodrayUp = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		GodrayUp = INI.Parse<int>(ini["GodraySettings"]["GodrayUp"], GodrayUp);
+        IsConfigInitialised = true;
+    }
+
+if (GodrayUp == 1)
+{
+    string[] levelIds = {"w1f01", "w1h01", "w5r01", "w5t01", "w5t02", "w1r03", "w1r04", "w2r01", "w3r01", "w4r01", "w6d01", "w6d02", "w6d03", "w6d04", "w6d05", "w6d06", "w6d07", "w6d08", "w6d09", "w6d10", "w7d01", "w7d02", "w7d03", "w7d04", "w7d05", "w7d06", "w7d07", "w7d08", "w8d01", "w8d02", "w8d03", "w8d04", "w8d05", "w8d06", "w9d03", "w9d04", "w9d02", "w9d07", "w9d06", "w9d05"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+ RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].godray.enable, true);
+		RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].godray.isUseShadowmap, true);
+		RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].godray.anisotropy, 0.25f);
+}
+for (int t = 0; t < 24; t++)
+	{
+		RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].godray.enable, true);
+		RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].godray.isUseShadowmap, true);
+		RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].godray.anisotropy, 0.25f);
+		}
+  for (int w = 0; w < 7; w++) {
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[w].godray.enable, true);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[w].godray.isUseShadowmap, true);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[w].godray.anisotropy, 0.25f);
+}
+       }
+    }
+
+
+Code "GodrayJav"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int GodrayUp = 0;
+	static int Atmos_NightLight = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		GodrayUp = INI.Parse<int>(ini["GodraySettings"]["GodrayUp"], GodrayUp);
+        IsConfigInitialised = true;
+    }
+
+if (GodrayUp == 1)
+{
+    string[] levelIds = {"w2r01", "w3r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].godray.density, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].godray.density, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].godray.density, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].godray.density, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].godray.density, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].godray.density, 1.5f);
+}	
+}
+
+if (GodrayUp == 1)
+{
+    string[] levelIds = {"w1r03", "w1r04"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].godray.density, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].godray.density, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].godray.density, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].godray.density, 1.5f);
+    }
+}
+if (GodrayUp == 1 && Atmos_NightLight == 0)
+{
+    string[] levelIds = {"w1r03", "w1r04", "w2r01", "w3r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].godray.density, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].godray.density, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].godray.density, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].godray.density, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].godray.density, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].godray.density, 0.75f);
+    }
+}
+
+if (GodrayUp == 1 && Atmos_NightLight == 1)
+{
+    string[] levelIds = {"w1r03", "w1r04", "w2r01", "w3r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].godray.density, 1.0f);
+    }
+}
+
+if (GodrayUp == 1 && Atmos_NightLight == 1)
+{
+    string[] levelIds = {"w2r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].godray.density, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].godray.density, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].godray.density, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].godray.density, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].godray.density, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].godray.density, 1.5f);
+    }
+}
+
+if (GodrayUp == 1)
+{
+    string[] levelIds = {"w1r03", "w1r04"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+			
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[0].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[1].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].godray.density, 1.0f);
+    }
+}
+
+if (GodrayUp == 1)
+{
+    string[] levelIds = {"w3r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[0].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[1].godray.density, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].godray.density, 1.0f);
+    }
+}

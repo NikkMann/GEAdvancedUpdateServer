@@ -1,0 +1,65 @@
+Code "Atmos_NightLight"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int Atmos_NightLight = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		Atmos_NightLight = INI.Parse<int>(ini["Tonemap"]["Atmos_NightLight"], Atmos_NightLight);
+        IsConfigInitialised = true;
+    }
+
+if (Atmos_NightLight == 1)
+{
+    string[] levelIds = {"w1r03", "w1r04", "w3r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].atmosphere.brunetonSkyParam.night.lunarLightPower, 30000.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].atmosphere.brunetonSkyParam.night.lunarLightPower, 30000.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].atmosphere.brunetonSkyParam.night.lunarLightPower, 30000.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].atmosphere.brunetonSkyParam.night.lunarLightPower, 30000.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].atmosphere.brunetonSkyParam.night.lunarLightPower, 30000.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].atmosphere.brunetonSkyParam.night.lunarLightPower, 30000.0f);
+    }
+}
+
+if (Atmos_NightLight == 1)
+{
+    string[] levelIds = {"w2r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].atmosphere.brunetonSkyParam.night.lunarLightPower, 20000.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].atmosphere.brunetonSkyParam.night.lunarLightPower, 20000.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].atmosphere.brunetonSkyParam.night.lunarLightPower, 20000.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].atmosphere.brunetonSkyParam.night.lunarLightPower, 20000.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].atmosphere.brunetonSkyParam.night.lunarLightPower, 20000.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].atmosphere.brunetonSkyParam.night.lunarLightPower, 20000.0f);
+    }
+}

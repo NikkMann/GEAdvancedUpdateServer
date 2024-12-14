@@ -1,0 +1,195 @@
+Code "GE_MBBPower"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#lib "SonicParameters"
+	#lib "AmyParameters"
+	#lib "KnucklesParameters"
+	#lib "TailsParameters"
+	#lib "HMM
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int MBBPower = 4;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		MBBPower = INI.Parse<int>(ini["MBSettings"]["MBBPower"], MBBPower);
+        IsConfigInitialised = true;
+    }
+
+if (MBBPower == 0)
+{
+{
+	var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
+
+	if (SonicParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(SonicParametersInfo, forwardView.modePackage.boost.blurPowers[0], 0.3f);
+	RFL_SET_PARAM(SonicParametersInfo, water.boost.blurPowers[0], 0.3f);
+	RFL_SET_PARAM(SonicParametersInfo, cyberspace.modePackage.boost.blurPowers[0], 0.3f);
+	RFL_SET_PARAM(SonicParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 0.3f);
+}
+{
+	var AmyParametersInfo = Reflection.GetDataInfo<AmyParameters.Root>("amy_common");
+
+	if (AmyParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(AmyParametersInfo, forwardView.modePackage.boost.blurPowers[0], 0.3f);
+	RFL_SET_PARAM(AmyParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 0.3f);
+}
+{
+	var KnucklesParametersInfo = Reflection.GetDataInfo<KnucklesParameters.Root>("knuckles_common");
+
+	if (KnucklesParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(KnucklesParametersInfo, forwardView.modePackage.boost.blurPowers[0], 0.3f);
+	RFL_SET_PARAM(KnucklesParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 0.3f);
+}
+{
+	var TailsParametersInfo = Reflection.GetDataInfo<TailsParameters.Root>("tails_common");
+
+	if (TailsParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(TailsParametersInfo, forwardView.modePackage.boost.blurPowers[0], 0.3f);
+	RFL_SET_PARAM(TailsParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 0.3f);
+}
+}
+if (MBBPower == 1)
+{
+{
+	var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
+
+	if (SonicParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(SonicParametersInfo, forwardView.modePackage.boost.blurPowers[0], 0.6f);
+	RFL_SET_PARAM(SonicParametersInfo, water.boost.blurPowers[0], 0.6f);
+	RFL_SET_PARAM(SonicParametersInfo, cyberspace.modePackage.boost.blurPowers[0], 0.6f);
+	RFL_SET_PARAM(SonicParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 0.6f);
+}
+{
+	var AmyParametersInfo = Reflection.GetDataInfo<AmyParameters.Root>("amy_common");
+
+	if (AmyParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(AmyParametersInfo, forwardView.modePackage.boost.blurPowers[0], 0.6f);
+	RFL_SET_PARAM(AmyParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 0.6f);
+}
+{
+	var KnucklesParametersInfo = Reflection.GetDataInfo<KnucklesParameters.Root>("knuckles_common");
+
+	if (KnucklesParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(KnucklesParametersInfo, forwardView.modePackage.boost.blurPowers[0], 0.6f);
+	RFL_SET_PARAM(KnucklesParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 0.6f);
+}
+{
+	var TailsParametersInfo = Reflection.GetDataInfo<TailsParameters.Root>("tails_common");
+
+	if (TailsParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(TailsParametersInfo, forwardView.modePackage.boost.blurPowers[0], 0.6f);
+	RFL_SET_PARAM(TailsParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 0.6f);
+}
+}
+if (MBBPower == 2)
+{
+{
+	var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
+
+	if (SonicParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(SonicParametersInfo, forwardView.modePackage.boost.blurPowers[0], 1.0f);
+	RFL_SET_PARAM(SonicParametersInfo, water.boost.blurPowers[0], 1.0f);
+	RFL_SET_PARAM(SonicParametersInfo, cyberspace.modePackage.boost.blurPowers[0], 1.0f);
+	RFL_SET_PARAM(SonicParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 1.0f);
+}
+{
+	var AmyParametersInfo = Reflection.GetDataInfo<AmyParameters.Root>("amy_common");
+
+	if (AmyParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(AmyParametersInfo, forwardView.modePackage.boost.blurPowers[0], 1.0f);
+	RFL_SET_PARAM(AmyParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 1.0f);
+}
+{
+	var KnucklesParametersInfo = Reflection.GetDataInfo<KnucklesParameters.Root>("knuckles_common");
+
+	if (KnucklesParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(KnucklesParametersInfo, forwardView.modePackage.boost.blurPowers[0], 1.0f);
+	RFL_SET_PARAM(KnucklesParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 1.0f);
+}
+{
+	var TailsParametersInfo = Reflection.GetDataInfo<TailsParameters.Root>("tails_common");
+
+	if (TailsParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(TailsParametersInfo, forwardView.modePackage.boost.blurPowers[0], 1.0f);
+	RFL_SET_PARAM(TailsParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 1.0f);
+}
+}
+if (MBBPower == 3)
+{
+{
+	var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
+
+	if (SonicParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(SonicParametersInfo, forwardView.modePackage.boost.blurPowers[0], 1.5f);
+    RFL_SET_PARAM(SonicParametersInfo, water.boost.blurPowers[0], 1.5f);
+	RFL_SET_PARAM(SonicParametersInfo, cyberspace.modePackage.boost.blurPowers[0], 1.5f);
+	RFL_SET_PARAM(SonicParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 1.5f);
+}
+{
+	var AmyParametersInfo = Reflection.GetDataInfo<AmyParameters.Root>("amy_common");
+
+	if (AmyParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(AmyParametersInfo, forwardView.modePackage.boost.blurPowers[0], 1.5f);
+	RFL_SET_PARAM(AmyParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 1.5f);
+}
+{
+	var KnucklesParametersInfo = Reflection.GetDataInfo<KnucklesParameters.Root>("knuckles_common");
+
+	if (KnucklesParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(KnucklesParametersInfo, forwardView.modePackage.boost.blurPowers[0], 1.5f);
+	RFL_SET_PARAM(KnucklesParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 1.5f);
+}
+{
+	var TailsParametersInfo = Reflection.GetDataInfo<TailsParameters.Root>("tails_common");
+
+	if (TailsParametersInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(TailsParametersInfo, forwardView.modePackage.boost.blurPowers[0], 1.5f);
+	RFL_SET_PARAM(TailsParametersInfo, cyberspaceSV.modePackage.boost.blurPowers[0], 1.5f);
+}
+}

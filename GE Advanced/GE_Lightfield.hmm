@@ -1,0 +1,325 @@
+Code "Dicey's OZ LightFields"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int GE_Lightfield = 0;
+	static int GE_LightfieldCyb = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		GE_Lightfield = INI.Parse<int>(ini["IBLSettings"]["GE_Lightfield"], GE_Lightfield);
+        IsConfigInitialised = true;
+    }
+
+if (GE_Lightfield == 1)
+{
+    string[] levelIds = {"w1r03", "w1r04"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {    
+    RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.X, 1.1f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Y, 1.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Z, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.X, 1.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Y, 1.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Z, 1.1f);
+}
+    }
+}
+
+if (GE_Lightfield == 1)
+{
+    string[] levelIds = {"w2r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+    RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.X, 1.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Y, 1.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Z, 1.35f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.X, 1.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Y, 1.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Z, 1.35f);
+}
+    }
+}
+
+if (GE_Lightfield == 1)
+{
+    string[] levelIds = {"w3r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+    RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.X, 1.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Y, 1.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Z, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.X, 1.25f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Y, 1.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Z, 1.25f);
+}
+    }
+}
+
+Code "Neutral OZ LightFields"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int GE_Lightfield = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		GE_Lightfield = INI.Parse<int>(ini["IBLSettings"]["GE_Lightfield"], GE_Lightfield);
+        IsConfigInitialised = true;
+    }
+
+if (GE_Lightfield == 2)
+{
+    string[] levelIds = {"w1r03", "w1r04", "w2r01", "w3r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+    RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.X, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Y, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Z, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.X, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Y, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Z, 1.5f);
+    }
+}
+}
+
+Code "Cyberspace Lightfields"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int GE_LightfieldCyb = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		GE_LightfieldCyb = INI.Parse<int>(ini["IBLSettings"]["GE_LightfieldCyb"], GE_LightfieldCyb);
+        IsConfigInitialised = true;
+    }
+
+if (GE_LightfieldCyb == 1 && (LevelInfo.GetCurrentStageID() == "w6d01" || LevelInfo.GetCurrentStageID() == "w6d03" || LevelInfo.GetCurrentStageID() == "w6d04" || LevelInfo.GetCurrentStageID() == "w6d06" || LevelInfo.GetCurrentStageID() == "w6d07" || LevelInfo.GetCurrentStageID() == "w6d08" || LevelInfo.GetCurrentStageID() == "w6d09" || LevelInfo.GetCurrentStageID() == "w6d22"))
+{
+    string[] levelIds = {"w6d01", "w6d03", "w6d04", "w6d06", "w6d07", "w6d08", "w6d09"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+            RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.X, 1.5f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Y, 1.2f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Z, 0.9f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.X, 1.4f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Y, 0.9f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Z, 1.2f);
+    }
+	}
+}
+
+if (GE_LightfieldCyb == 1 && (LevelInfo.GetCurrentStageID() == "w6d02" || LevelInfo.GetCurrentStageID() == "w6d05" || LevelInfo.GetCurrentStageID() == "w6d10" || LevelInfo.GetCurrentStageID() == "w6d21" || LevelInfo.GetCurrentStageID() == "w6d23"))
+{
+    string[] levelIds = {"w6d02", "w6d05", "w6d10"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+            RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.X, 1.25f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Y, 0.75f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Z, 0.5f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.X, 1.35f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Y, 1.15f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Z, 0.7f);
+    }
+	}
+}
+
+if (GE_LightfieldCyb == 1 && (LevelInfo.GetCurrentStageID() == "w7d01" || LevelInfo.GetCurrentStageID() == "w7d02" || LevelInfo.GetCurrentStageID() == "w7d03" || LevelInfo.GetCurrentStageID() == "w7d04" || LevelInfo.GetCurrentStageID() == "w7d05" || LevelInfo.GetCurrentStageID() == "w7d06" || LevelInfo.GetCurrentStageID() == "w7d07" || LevelInfo.GetCurrentStageID() == "w7d08" || LevelInfo.GetCurrentStageID() == "w7d21" || LevelInfo.GetCurrentStageID() == "w7d22" || LevelInfo.GetCurrentStageID() == "w7d23"))
+{
+    string[] levelIds = {"w7d01", "w7d02", "w7d03", "w7d04", "w7d05", "w7d06", "w7d07", "w7d08"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+            RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.X, 1.5f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Y, 1.0f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Z, 1.25f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.X, 1.3f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Y, 0.8f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Z, 1.2f);
+    }
+	}
+}
+
+if (GE_LightfieldCyb == 1 && (LevelInfo.GetCurrentStageID() == "w8d01" || LevelInfo.GetCurrentStageID() == "w8d03" || LevelInfo.GetCurrentStageID() == "w8d05" || LevelInfo.GetCurrentStageID() == "w8d06"))
+
+{
+    string[] levelIds = {"w8d01", "w8d03", "w8d05", "w8d06"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+            RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.X, 1.125f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Y, 1.5f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Z, 1.4f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.X, 1.25f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Y, 1.65f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Z, 1.75f);
+    }
+	}
+}
+
+if (GE_LightfieldCyb == 1 && (LevelInfo.GetCurrentStageID() == "w8d02" || LevelInfo.GetCurrentStageID() == "w8d04"))
+{
+    string[] levelIds = {"w8d02", "w8d04"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+            RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.X, 2.0f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Y, 1.0f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Z, 0.5f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.X, 1.0f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Y, 1.25f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Z, 0.75f);
+    }
+	}
+}
+
+if (GE_LightfieldCyb == 1 && (LevelInfo.GetCurrentStageID() == "w9d02" || LevelInfo.GetCurrentStageID() == "w9d07" || LevelInfo.GetCurrentStageID() == "w9d21"))
+{
+    string[] levelIds = {"w9d02", "w9d07"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+            RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.X, 1.25f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Y, 1.0f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Z, 0.5f);
+        	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.X, 1.25f);
+            RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Y, 1.25f);
+        	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Z, 1.0f);
+    }
+	}
+}
+
+if (GE_LightfieldCyb == 1 && (LevelInfo.GetCurrentStageID() == "w9d03" || LevelInfo.GetCurrentStageID() == "w9d04" || LevelInfo.GetCurrentStageID() == "w9d22"))
+{
+    string[] levelIds = {"w9d03", "w9d04"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+            RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.X, 1.25f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Y, 0.75f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Z, 0.75f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.X, 1.5f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Y, 1.25f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Z, 0.75f);
+    }
+	}
+}
+
+if (GE_LightfieldCyb == 1 && (LevelInfo.GetCurrentStageID() == "w9d06" || LevelInfo.GetCurrentStageID() == "w9d05" || LevelInfo.GetCurrentStageID() == "w9d23"))
+{
+    string[] levelIds = {"w9d06", "w9d05"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+            RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.X, 2.25f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Y, 3.0f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorUp.Z, 1.5f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.X, 3.15f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Y, 2.5f);
+	        RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].shlightfield.multiplyColorDown.Z, 1.25f);
+    }
+	}
+}

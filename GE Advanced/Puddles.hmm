@@ -1,0 +1,46 @@
+Code "Puddles"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int Puddles = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		Puddles = INI.Parse<int>(ini["Atmosphere"]["Puddles"], Puddles);
+        IsConfigInitialised = true;
+    }
+
+if (Puddles == 1)
+{
+    string[] levelIds = {"w1r03", "w1r04", "w3r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.puddle.heightThreshold, 0.9f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.puddle.slopeThreshold, 0.9f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.puddle.noiseThreshold, 0.9f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.puddle.heightThreshold, 0.9f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.puddle.slopeThreshold, 0.9f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.puddle.noiseThreshold, 0.9f);
+    }
+}

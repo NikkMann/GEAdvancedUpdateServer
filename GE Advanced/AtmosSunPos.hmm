@@ -1,0 +1,87 @@
+Code "Kronos RheaSunPos"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+ 	#lib "GameManager"
+	#import "Services"
+
+    using System.Runtime.InteropServices;
+
+    [StructLayout(LayoutKind.Explicit, Size = 0x1610)]
+    public struct FxParamManager
+    {
+        [FieldOffset(0x80)] public NeedleFxSceneData.NeedleFxParameter parameters;
+        [FieldOffset(0x12f0)] public NeedleFxSceneData.NeedleFxSceneConfig sceneConfig;
+    }
+
+	static bool IsConfigInitialised = false;
+	static int SunPos = 0;
+	int lastHour = 0;
+	int lastMinutes = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		SunPos = INI.Parse<int>(ini["Atmosphere"]["SunPos"], SunPos);
+        IsConfigInitialised = true;
+    }
+
+if (SunPos == 1)
+{
+	var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w1r03");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, config.timeProgress.azimuthAngle, 275.0f);
+}
+
+Code "OuranosSunPos"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int SunPos = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		SunPos = INI.Parse<int>(ini["Atmosphere"]["SunPos"], SunPos);
+        IsConfigInitialised = true;
+    }
+
+if (SunPos == 1)
+{
+	var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w1r04");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, config.timeProgress.azimuthAngle, 185.0f);
+}

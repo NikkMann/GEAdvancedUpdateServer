@@ -1,0 +1,2192 @@
+{
+   "Groups": [
+      {
+         "Name": "ShadowSettings",
+         "DisplayName": "Shadow Settings",
+         "Elements": [
+	  {
+               "Name": "CloudShadow",
+               "DisplayName": "Cloud Shadow Darkness:",
+               "Description": [
+                  "Decrease the darkness from cloud shadows when they are present.
+
+No performance impact."
+				  ],
+               "Type": "CloudShadow",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "0"
+          },
+	        {
+               "Name": "ShEnhancements",
+               "DisplayName": "Shadow Enhancements:",
+               "Description": [
+                  "Greatly increase apparent shadow quality by shifting cascade transitions.
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "ShEnhancements",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+      },
+      {
+               "Name": "ShDistance",
+               "DisplayName": "Shadow Distance:",
+               "Description": [
+                  "Increase shadow render distance, x5 is full coverage of the entire map.
+
+Low performance impact.
+
+Recommend x2, but x5 looks great if you can tolerate some shimmering from medium-distance shadows.
+
+NOTE: Higher shadow distance will result in overall lower shadow quality/resolution, but this can mostly be fixed by enabling Shadow Enhancements."
+               ],
+               "Type": "ShDistance",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "4"
+      },
+      {
+               "Name": "ShAngleLimit",
+               "DisplayName": "Disable Shadow Angle Limit:",
+               "Description": [
+                  "Force shadows to always accurately line-up with the sun/moon positions.
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "ShAngleLimit",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+      },
+	        {
+               "Name": "LandShadows",
+               "DisplayName": "Landscape Volumetric Shadow Enhancements:",
+               "Description": [
+                  "Tweak landscape volumetric shadows to eliminate aggressive fade-in and over-coverage.
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "LandShadows",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+      },
+      {
+               "Name": "SSShEnhancements",
+               "DisplayName": "Screen-Space Shadow Enhancements:",
+               "Description": [
+                  "Tweak SSShadows to look better an cover more objects on-screen.
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "SSShEnhancements",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+      },
+      {
+               "Name": "SSShQuality",
+               "DisplayName": "Screen-Space Shadow Quality:",
+               "Description": [
+                  "Increase SSShadow ray count to increase detail of SSShadows.
+
+Low performance impact.
+
+Recommend Medium.
+
+NOTE: The closer the camera is to Sonic, the higher this needs to be to have full coverage of small/thin objects on screen."
+               ],
+               "Type": "SSShQuality",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+            },
+         ]
+      },
+	  	  	  {
+         "Name": "IBLSettings",
+         "DisplayName": "Global Illumination Settings (Read description for important NOTES)",
+         "Elements": [
+      {
+               "Name": "IBLEnhancements",
+               "DisplayName": "Disable Pre-Baked Global Illumination:",
+               "Description": [
+                  "Force the game to only use real-time global illumination for all objects. 
+
+This fixes many odd/unrealistic lighting situations in the game such as improperly bright reflections (including on Sonic), water in dark/shaded areas looking like its still being lit by the sun, objects in dark areas looking like they are being lit up from seemingly nowhere, distant objects not having proper sun shading, etc. 
+
+No performance impact.
+
+Recommend On.
+
+NOTE: Does not affect SSGI."
+               ],
+               "Type": "IBLEnhancements",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+	  	  {
+               "Name": "IBLBrightness",
+               "DisplayName": "Image-Based-Lighting Brightness:",
+               "Description": [
+                  "Change the brightness of the game's IBL, which will affect things like reflection brightness on puddles and brightness of distant reflective components such as water, tree edges, grass blades, rails, platforms, etc. 
+
+No performance impact."
+               ],
+               "Type": "IBLBrightness",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+	  {
+               "Name": "ShadeBounce",
+               "DisplayName": "Shaded Bounce Lighting Brightness:",
+               "Description": [
+                  "Change how much bounce/colored lighting areas in darkness (not being directly hit by light) and ambient occlusion receive. The lower this is, the darker and more desaturated shaded areas will look.
+
+No performance impact."
+               ],
+               "Type": "ShadeBounce",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+		{
+               "Name": "GE_Lightfield",
+               "DisplayName": "Improved Ambient Lighting in Open Zone:",
+               "Description": [
+                  "Brighten ambient lighting so objects look more grounded in the world.
+
+No Performance impact.
+
+Recommend On."
+               ],
+               "Type": "GE_Lightfield",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+            },
+		{
+               "Name": "GE_LightfieldCyb",
+               "DisplayName": "Improved Ambient Lighting in Cyberspace:",
+               "Description": [
+                  "Recolor ambient lighting so objects look more grounded in the world. 
+
+No Performance impact.
+
+Recommend On.
+
+NOTE: Disable if you are going to apply on a custom stage that changes lighting or textures."
+               ],
+               "Type": "GE_LightfieldCyb",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+            }
+         ]
+      },
+	  {
+         "Name": "AmbientOcclusionSettings",
+         "DisplayName": "Ambient Occlusion Settings",
+         "Elements": [
+      {
+               "Name": "HBAOEnhancements",
+               "DisplayName": "HBAO Enhancements:",
+               "Description": [
+                  "Tweak HBAO to look better.
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "HBAOEnhancements",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+      {
+               "Name": "HBAORes",
+               "DisplayName": "HBAO Resolution:",
+               "Description": [
+                  "Increase HBAO resolution to make it clearer.
+
+High performance impact."
+               ],
+               "Type": "HBAORes",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "0"
+
+      },
+      {
+               "Name": "DOEnhancements",
+               "DisplayName": "Distance Occlusion Enhancements:",
+               "Description": [
+                  "Increase cube probes for more accurate large-scale terrain occlusion.
+
+Very Low performance impact.
+
+Recommend On."
+               ],
+               "Type": "DOEnhancements",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+      },
+      {
+               "Name": "SonicOcclusion",
+               "DisplayName": "Sonic's Shadow Occlusion:",
+               "Description": [
+                  "Enable additional minor occlusion around Sonic's shadow.
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "SonicOcclusion",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+      },
+         ]
+      },
+	  {
+         "Name": "ReflectionSettings",
+         "DisplayName": "Reflection Settings (Read description for important NOTES)",
+         "Elements": [
+      {
+               "Name": "RefEnhancements",
+               "DisplayName": "Reflection Enhancements:",
+               "Description": [
+                  "Tweak reflections to be more physically accurate by respecting normal maps.
+
+They will now bend and stretch around reflective surfaces as they properly should.
+
+No performance impact.
+
+Recommend On.
+
+NOTE: Disable the 'Force Higher Detail Reflections' code in HMM or it will overwrite this with its settings."
+               ],
+               "Type": "RefEnhancements",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+      {
+               "Name": "RefQuality",
+               "DisplayName": "Reflection Quality:",
+               "Description": [
+                  "Increase the amount of rays for more complete and accurate reflection coverage.
+
+Very Low performance impact.
+
+Recommend Very High.
+
+NOTE: Disable the 'Force Higher Detail Reflections' code in HMM or it will overwrite this with its settings."
+               ],
+               "Type": "RefQuality",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "3"
+      },
+         ]
+      },
+	  {
+         "Name": "LODSettings",
+         "DisplayName": "LOD Settings",
+         "Elements": [
+      {
+               "Name": "LODEnhancement",
+               "DisplayName": "LOD Enhancement:",
+               "Description": [
+                  "Forces objects to remain at their highest quality across the map. Increase the view distance of rails and various items. Original code by Hyper.
+
+High performance impact.
+
+NOTE: Disable the 'Force Maximum Geometry' code in HMM if you use it. This does the same thing as that."
+               ],
+               "Type": "LODEnhancement",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "3"
+
+      },
+         ]
+      },
+	  	  {
+         "Name": "SSSSettings",
+         "DisplayName": "Skin Sub-Surface Scattering Settings (Read description for important NOTES)",
+         "Elements": [
+      {
+               "Name": "SSSResolution",
+               "DisplayName": "SSS Resolution Fix:",
+               "Description": [
+                  "Fix skin sub-surface scattering not properly scaling with resolutions other than 720p (good job Sonic team). 
+
+NOTE: You need to reload a save or change maps after changing your game's resolution and/or rendering scale for this to properly take effect. 
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "SSSResolution",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+      {
+               "Name": "SSSFix",
+               "DisplayName": "SSS Thickness Improvement:",
+               "Description": [
+                  "Mostly fix skin sub-surface scattering showing through parts it shouldn't and being overly bright. 
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "SSSFix",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+         ]
+      },
+ {
+         "Name": "TAASettings",
+         "DisplayName": "Temporal Anti-Aliasing Settings (Read description for important NOTES)",
+         "Elements": [
+      {
+               "Name": "TAAEnhancements",
+               "DisplayName": "TAA Enhancements:",
+               "Description": [
+                  "Tweak TAA to have less blurring and ghosting. 
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "TAAEnhancements",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+	        {
+               "Name": "TAALite",
+               "DisplayName": "TAA Lite Mode:",
+               "Description": [
+                  "Reduce the amount of visual processing done by TAA to lessen its effects and make the game clearer. 
+				  
+NOTE: This may make Cyberspace stages look overly sharpened depending on your resolution.
+
+No performance impact.
+
+Recommended for resolutions 1440p and up, as it can increase aliasing on lower resolutions."
+               ],
+               "Type": "TAALite",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "0"
+
+      },
+         ]
+      },
+	   {
+         "Name": "FSRSettings",
+         "DisplayName": "FSR Settings",
+         "Elements": [
+      {
+               "Name": "FSRDisable",
+               "DisplayName": "Disable FSR:",
+               "Description": [
+                  "Disable the game's use of FSR 1.0, which is used to artificially increase image sharpness. 
+
+Will fix common FSR 1.0 issues such as halo-ing and oversharpening.
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "FSRDisable",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+      {
+               "Name": "FSRFast",
+               "DisplayName": "Fast FSR Mode:",
+               "Description": [
+                  "Reduce FSR's visual impact while keeping its sharpening value. 
+
+Can cause over-sharpening.
+
+No performance impact.
+
+Recommend Off.
+
+NOTE: Will not have any effect if 'Disable FSR' is on."
+               ],
+               "Type": "FSRFast",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "0"
+
+      },
+         ]
+      },
+	   {
+         "Name": "MBSettings",
+         "DisplayName": "Motion Blur Settings (Read description for important NOTES)",
+         "Elements": [
+      {
+               "Name": "MBQuality",
+               "DisplayName": "Motion Blur Quality:",
+               "Description": [
+                  "Increase the quality of motion blur by increasing the amount of blur samples. 
+
+Very Low performance impact.
+
+Recommend High."
+               ],
+               "Type": "MBQuality",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "2"
+
+      },
+	  {
+               "Name": "MBSharp",
+               "DisplayName": "Motion Blur Clarity:",
+               "Description": [
+                  "Increase the clarity of the motion blur. This will decrease artifacting from motion blur, but as a result, objects will look like they have less motion blur on them.
+
+No performance impact."
+               ],
+               "Type": "MBSharp",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "0"
+
+      },
+      {
+               "Name": "MB2d",
+               "DisplayName": "Force Motion Blur Always On:",
+               "Description": [
+                  "Force motion blur to remain enabled for 2d sections and in cutscenes where it is normally disabled. Still needed if you use camera mods to disable the 2D camera and want motion blur in those originally-2D areas. Original code by angryzor.
+
+No performance impact.
+
+NOTE: The strength of the motion blur in these areas is still affected by the settings below.
+
+NOTE: This forces motion blur on all the time, ignoring the game's options. If you don't want motion blur at all, make sure this is off."
+               ],
+               "Type": "MB2d",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+	        {
+               "Name": "MBPower",
+               "DisplayName": "Motion Blur Power (Non-Boost):",
+               "Description": [
+                  "Change the strength of the motion blur when NOT boosting. 
+
+No performance impact."
+               ],
+               "Type": "MBPower",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "4"
+
+      },
+	  	        {
+               "Name": "MBBPower",
+               "DisplayName": "Motion Blur Power (Boost):",
+               "Description": [
+                  "Change the strength of the motion blur when boosting. 
+
+No performance impact."
+               ],
+               "Type": "MBBPower",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "2"
+
+      },
+         ]
+      },
+	   {
+         "Name": "DOFSettings",
+         "DisplayName": "Depth of Field Settings (Read description for important NOTES)",
+         "Elements": [
+      {
+               "Name": "DOFForce",
+               "DisplayName": "Depth of Field:",
+               "Description": [
+                  "Force enable depth of field. 
+
+Very Low performance impact.
+
+Recommend On.
+
+NOTE: Disable the 'Force Depth of Field' code in HMM, otherwise it will overwrite GE's DOF settings."
+               ],
+               "Type": "DOFForce",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+      {
+               "Name": "DOFRes",
+               "DisplayName": "Depth of Field Resolution:",
+               "Description": [
+                  "Increase DOF resolution, eliminating halo and aliasing artifacts. 
+
+Very Low performance impact.
+
+Recommend Full Res.
+
+NOTE: Disable the 'Force Depth of Field' code in HMM, otherwise it will overwrite GE's DOF settings."
+               ],
+               "Type": "DOFRes",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "2"
+
+      },
+	        {
+               "Name": "DOFType",
+               "DisplayName": "Depth of Field Type:",
+               "Description": [
+                  "Change the look of the depth of field. 
+
+No performance impact.
+
+NOTE: Disable the 'Force Depth of Field' code in HMM, otherwise it will overwrite GE's DOF settings."
+               ],
+               "Type": "DOFType",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+         ]
+      },
+	   {
+         "Name": "FolSettings",
+         "DisplayName": "Foliage Settings (Read description for important NOTES)",
+         "Elements": [
+      {
+               "Name": "FolDith",
+               "DisplayName": "Reduce Foliage Dithering:",
+               "Description": [
+                  "Reduce foliage dithering (how grass and trees become transparent close to the camera) so it fades out less. 
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "FolDith",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+      {
+               "Name": "FolLOD",
+               "DisplayName": "Extend Foliage LOD Distance:",
+               "Description": [
+                  "Extend foliage LOD distance so grass, flowers and trees are more detailed further from the camera. 
+
+Low performance impact."
+               ],
+               "Type": "FolLOD",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+	  {
+               "Name": "TreeLODExtend",
+               "DisplayName": "Tree Distance Leaves Quality:",
+               "Description": [
+                  "Extend the distance and quality of tree leaves, Max is the entire map. Pair with increased Shadow Distance to have trees cast much more accurate shadows farther on the map. Original code by Hyper.
+
+Performance impact depends on setting used, can be Very High.
+
+NOTE 1: Disable the 'x2 and/or x4 Extended Foliage Draw Distance' codes in HMM if you use them. This does the same thing as those but with more options. High is the same as x2 Extended Foliage Draw Distance. Max is the same as x4 Extended Foliage Draw Distance.
+
+NOTE 2: Greatly increasing both Shadow Distance and Tree Distance Leaves Quality together will take more performance."
+               ],
+               "Type": "TreeLODExtend",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "3"
+
+      },
+      {
+               "Name": "GrassDist",
+               "DisplayName": "Extend Grass Fade Distance:",
+               "Description": [
+                  "Extend how far grass fades from the player. Original code by Hyper. 
+
+No performance impact.
+
+Recommend On.
+
+NOTE: Disable the 'x2 Extended Grass Draw Distance' code in HMM if you use it. This does the same thing as that but with more options."
+               ],
+               "Type": "GrassDist",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+      },
+         ]
+      },
+	  	   {
+         "Name": "SSGISettings",
+         "DisplayName": "SSGI Settings",
+         "Elements": [
+      {
+               "Name": "SSGIEnable",
+               "DisplayName": "Screen Space Global Illumination:",
+               "Description": [
+                  "Add lights to various emmissive objects such as cyberspace portals and ruins. 
+
+Very noisy and seems to be an unfinished graphical effect, had to be toned down in most areas due to issues with improperly lighting grass.
+
+Very High performance impact.
+
+Recommend Off."
+               ],
+               "Type": "SSGIEnable",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "0"
+
+      },
+         ]
+      },
+	   {
+         "Name": "DentSettings",
+         "DisplayName": "Footstep Settings",
+         "Elements": [
+      {
+               "Name": "DentRange",
+               "DisplayName": "Ares Sand Footstep Range Increase:",
+               "Description": [
+                  "Increase the range that sand foosteps in Ares are visible before they fade out. 
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "DentRange",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+         ]
+      },
+	  {
+         "Name": "BloomSettings",
+         "DisplayName": "Bloom Settings",
+         "Elements": [
+      {
+               "Name": "BloomStrIsland",
+               "DisplayName": "Island Bloom Strength:",
+               "Description": [
+                  "Increase the strength of the bloom on the islands.
+
+No performance impact."
+               ],
+               "Type": "BloomStrIsland",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+      {
+               "Name": "BloomStrCS",
+               "DisplayName": "CyberSpace Bloom Strength:",
+               "Description": [
+                  "Decrease the strength of the bloom in cyberspace.
+
+No performance impact."
+               ],
+               "Type": "BloomStrCS",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "2"
+
+      },
+         ]
+      },
+{
+         "Name": "GodraySettings",
+         "DisplayName": "Island Godray Settings:",
+         "Elements": [
+      {
+               "Name": "GodrayUp",
+               "DisplayName": "Godray Increase:",
+               "Description": [
+                  "Tweak atmospheric density settings to allow all objects to cast realistic godrays. 
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "GodrayUp",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+         ]
+      },
+  {
+         "Name": "LightScatSettings",
+         "DisplayName": "Island Light Scattering Settings (Read description for important NOTES)",
+         "Elements": [
+      {
+               "Name": "LightScatEnable",
+               "DisplayName": "Light Scattering:",
+               "Description": [
+                  "Force the game to enable light scattering on islands, simulating more realistic light diffusion in the atmosphere. 
+
+Low performance impact.
+
+Recommend On.
+
+NOTE: Disable the 'Force Light Scattering' code in HMM or it will overwrite this with its settings."
+               ],
+               "Type": "LightScatEnable",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+         ]
+      },
+  {
+         "Name": "NeutralNightLUT",
+         "DisplayName": "Island Neutral Night LUTs",
+         "Elements": [
+      {
+               "Name": "KronosNightLUT",
+               "DisplayName": "Kronos Neutral Night LUT",
+               "Description": [
+                  "Force the game to use a hidden neutral-colored LUT at night for Kronos, making the colors more realistic.
+
+No performance impact."
+               ],
+               "Type": "KronosNightLUT",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+      {
+               "Name": "RheaNightLUT",
+               "DisplayName": "Rhea Neutral Night LUT",
+               "Description": [
+                  "Force the game to use a hidden neutral-colored LUT at night for Rhea, making the colors more realistic.
+
+No performance impact."
+               ],
+               "Type": "RheaNightLUT",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+      {
+               "Name": "OuranousNightLUT",
+               "DisplayName": "Ouranous Neutral Night LUT",
+               "Description": [
+                  "Force the game to use a hidden neutral-colored LUT at night for Ouranous, making the colors more realistic.
+
+No performance impact."
+               ],
+               "Type": "OuranousNightLUT",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+      {
+               "Name": "AresNightLUT",
+               "DisplayName": "Ares Neutral Night LUT",
+               "Description": [
+                  "Force the game to use a hidden neutral-colored LUT at night for Ares, making the colors more realistic.
+
+No performance impact."
+               ],
+               "Type": "AresNightLUT",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+      {
+               "Name": "ChaosNightLUT",
+               "DisplayName": "Chaos Neutral Night LUT",
+               "Description": [
+                  "Force the game to use a hidden neutral-colored LUT at night for Chaos, making the colors more realistic.
+
+No performance impact."
+               ],
+               "Type": "ChaosNightLUT",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+         ]
+      },
+  {
+         "Name": "Tonemap",
+         "DisplayName": "Tonemappers",
+         "Elements": [
+      {
+               "Name": "GE_AutoExposure",
+               "DisplayName": "Auto Exposure Adjustment",
+               "Description": [
+                  "Tweak the game's auto-exposure to prevent it from being too bright or too dark. Use of 'Improved Ambient Lighting' is recommended.
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "GE_AutoExposure",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+      {
+               "Name": "GE_AresNightTonemap",
+               "DisplayName": "Ares Night Tonemap Fix",
+               "Description": [
+                  "Fix Ares' nighttime tonemap value having an extra 0 compared to the other islands, making it darker than it should be (good job Sonic Team).
+
+No performance impact.
+
+Recommend On."
+               ],
+               "Type": "GE_AresNightTonemap",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+
+      },
+{
+               "Name": "Atmos_NightLight",
+               "DisplayName": "Increase Night Light",
+               "Description": [
+                  "Double the intensity of the moon's light.
+
+No performance impact."
+               ],
+               "Type": "Atmos_NightLight",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "0"
+
+      },
+         ]
+      },
+      {
+         "Name": "Atmosphere",
+         "DisplayName": "Atmosphere and Weather Settings (Read description for important NOTES)",
+         "Elements": [
+      {
+               "Name": "EnhancedRain",
+               "DisplayName": "Enhanced Rain:",
+               "Description": [
+                  "Tweak rain to render farther from the player, be less distracting in low-light conditions, have slightly shorter particles so it look less like long white lines and make it fall straight down when not moving.
+
+No performance impact.
+
+Recommend On.
+
+NOTE: This will be automatically disabled if using GE Atmospheres as that already includes its own rain changes."
+               ],
+               "Type": "EnhancedRain",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+            },
+{
+               "Name": "RainVisible",
+               "DisplayName": "Darker Rain:",
+               "Description": [
+                  "Darken rain so its not as bright.
+
+No performance impact.
+
+NOTE: This will be automatically disabled if using GE Atmospheres as that already includes its own rain changes."
+               ],
+               "Type": "RainVisible",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+            },
+      {
+               "Name": "Puddles",
+               "DisplayName": "Larger Puddles:",
+               "Description": [
+                  "Increase the size of puddles when raining.
+
+No performance impact."
+               ],
+               "Type": "Puddles",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "0"
+            },
+      {
+               "Name": "SunPos",
+               "DisplayName": "Custom Sun/Moon Rotation Angle:",
+               "Description": [
+                  "Change Sun/Moon positions in Kronos and Rhea to get a similar look to the TGA 2021 trailer.
+
+Change Sun/Moon positions in Ouranos to improve the scenography in the final boss fight.
+
+No performance impact."
+               ],
+               "Type": "SunPos",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "0"
+            },
+      {
+               "Name": "Stars",
+               "DisplayName": "Brighter Stars:",
+               "Description": [
+                  "Increase the brightness of stars at night.
+
+No performance impact."
+               ],
+               "Type": "Stars",
+               "MinValue": 0,
+               "MaxValue": 99,
+               "DefaultValue": "1"
+            },			
+         ]
+      },
+   ],
+   "Enums": {
+		"IBLBrightness": [
+	 {
+            "DisplayName": "Normal (Vanilla)",
+            "Value": "0",
+            "Description": [
+               "Vanilla shadowIBLAttenuation"
+            ]
+         },
+         {
+            "DisplayName": "85%",
+            "Value": "1",
+            "Description": [
+               "85% shadowIBLAttenuation"
+            ]
+         },
+{
+            "DisplayName": "70%",
+            "Value": "2",
+            "Description": [
+               "70% shadowIBLAttenuation"
+            ]
+         },	 
+{
+            "DisplayName": "55%",
+            "Value": "3",
+            "Description": [
+               "55% shadowIBLAttenuation"
+            ]
+         },	 
+{
+            "DisplayName": "40%",
+            "Value": "4",
+            "Description": [
+               "40% shadowIBLAttenuation"
+            ]
+         },	 		 
+      ],
+	  	  		"CloudShadow": [
+	 {
+            "DisplayName": "Normal (Vanilla)",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "Decrease Darkness",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+	  	  		"ShEnhancements": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+		"ShDistance": [
+	 {
+            "DisplayName": "x1 (Vanilla)",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+         {
+            "DisplayName": "x2",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+{
+            "DisplayName": "x3",
+            "Value": "2",
+            "Description": [
+               ""
+            ]
+         },	 
+{
+            "DisplayName": "x4",
+            "Value": "3",
+            "Description": [
+               ""
+            ]
+         },	
+{
+            "DisplayName": "x5",
+            "Value": "4",
+            "Description": [
+               ""
+            ]
+         },	  		 
+      ],
+	  	 "ShAngleLimit": [
+	 {
+            "DisplayName": "No",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "Yes",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+	  		"LandShadows": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+
+		"SSShEnhancements": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+	  
+	  "SSShQuality": [
+	 {
+            "DisplayName": "Low (Vanilla)",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+         {
+            "DisplayName": "Medium",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+{
+            "DisplayName": "High",
+            "Value": "2",
+            "Description": [
+               ""
+            ]
+         },	 
+{
+            "DisplayName": "Very High",
+            "Value": "3",
+            "Description": [
+               ""
+            ]
+         },	 	
+{
+            "DisplayName": "Max",
+            "Value": "3",
+            "Description": [
+               "The max amount allowed by the game engine"
+            ]
+         },			 
+      ],
+	  	    "IBLEnhancements": [
+	 {
+            "DisplayName": "No",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "Yes",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+		"GE_Lightfield": [
+{
+            "DisplayName": "Off (Vanilla)",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+	 {
+            "DisplayName": "On - Dicey's Open Zone settings",
+            "Value": "1",
+            "Description": [
+               "The same as Dicey's 'Improved Ambient Lighting' mod"
+            ]
+         },
+	 {
+            "DisplayName": "On - Neutral color",
+            "Value": "2",
+            "Description": [
+               "No color shift, just brighter"
+            ]
+         },	 
+      ],
+		  "GE_LightfieldCyb": [
+	 {
+            "DisplayName": "Off (Vanilla)",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 
+		 	 
+      ],
+	  	    "LightScatEnable": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 	 
+      ],
+	  	    "GodrayUp": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },		 
+      ],
+	  		"HBAOEnhancements": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+	  		"HBAORes": [
+	 {
+            "DisplayName": "Half Res (Vanilla)",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "Full Res",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+	  "DOEnhancements": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+		"ShadeBounce": [
+	 {
+            "DisplayName": "Normal (Vanilla)",
+            "Value": "0",
+            "Description": [
+               "Vanilla aoOffset"
+            ]
+         },
+         {
+            "DisplayName": "85%",
+            "Value": "1",
+            "Description": [
+               "85% aoOffset"
+            ]
+         },
+{
+            "DisplayName": "70%",
+            "Value": "2",
+            "Description": [
+               "70% aoOffset"
+            ]
+         },	 
+{
+            "DisplayName": "55%",
+            "Value": "3",
+            "Description": [
+               "55% aoOffset"
+            ]
+         },	 
+{
+            "DisplayName": "40%",
+            "Value": "4",
+            "Description": [
+               "40% aoOffset"
+            ]
+         },	 		 
+      ],
+	  "SonicOcclusion": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+	  		"RefEnhancements": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+        "RefQuality": [
+	 {
+            "DisplayName": "Low (Vanilla)",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+         {
+            "DisplayName": "Medium",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+{
+            "DisplayName": "High",
+            "Value": "2",
+            "Description": [
+               ""
+            ]
+         },	 
+{
+            "DisplayName": "Very High",
+            "Value": "3",
+            "Description": [
+               ""
+            ]
+         },	 
+{
+            "DisplayName": "Max",
+            "Value": "4",
+            "Description": [
+               "The max amount allowed by the game engine"
+            ]
+         },			 
+      ],
+		"TreeLODExtend": [
+	 {
+            "DisplayName": "Off (Vanilla)",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+         {
+            "DisplayName": "Low",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+{
+            "DisplayName": "Medium",
+            "Value": "2",
+            "Description": [
+               ""
+            ]
+         },	 
+{
+            "DisplayName": "High (x2)",
+            "Value": "3",
+            "Description": [
+               "Same as x2 Extended Foliage Draw Distance code"
+            ]
+         },	 
+{
+            "DisplayName": "Very High",
+            "Value": "4",
+            "Description": [
+               ""
+            ]
+         },	
+{
+            "DisplayName": "Ultra",
+            "Value": "5",
+            "Description": [
+               ""
+            ]
+         },	
+{
+            "DisplayName": "Max (x4)",
+            "Value": "6",
+            "Description": [
+               "Same as x4 Extended Foliage Draw Distance code, full map coverage"
+            ]
+         },		 
+      ],
+		"BloomStrIsland": [
+	 {
+            "DisplayName": "Normal (Vanilla)",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+         {
+            "DisplayName": "x1.25 Strength",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+{
+            "DisplayName": "X1.5 Strength",
+            "Value": "2",
+            "Description": [
+               ""
+            ]
+         },	 
+{
+            "DisplayName": "x1.75 Strength",
+            "Value": "3",
+            "Description": [
+               ""
+            ]
+         },
+{
+            "DisplayName": "x2 Strength",
+            "Value": "4",
+            "Description": [
+               ""
+            ]
+         },			 
+      ],
+		"BloomStrCS": [
+	 {
+            "DisplayName": "Normal (Vanilla)",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+         {
+            "DisplayName": "x0.75 Strength",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+{
+            "DisplayName": "X0.50 Strength",
+            "Value": "2",
+            "Description": [
+               ""
+            ]
+         },
+{
+            "DisplayName": "X0.25 Strength",
+            "Value": "3",
+            "Description": [
+               ""
+            ]
+         },		 
+      ],
+"SSSResolution": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+         {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },	 
+      ],
+"SSSFix": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+         {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },	 
+      ],
+	  "TAAEnhancements": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+		  "TAALite": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+	  	  "FSRDisable": [
+	 {
+            "DisplayName": "No",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "Yes",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+	  	  "FSRFast": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+	  		"MBQuality": [
+	 {
+            "DisplayName": "Low (Vanilla)",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "Medium",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	
+	 {
+            "DisplayName": "High",
+            "Value": "2",
+            "Description": [
+               ""
+            ]
+         }, 		 
+      ],
+	  	  		"MBSharp": [
+	 {
+            "DisplayName": "Off (Vanilla)",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 		 
+      ],
+		  "MB2d": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+	  		"MBPower": [
+	 {
+            "DisplayName": "0.3 (Vanilla)",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+         {
+            "DisplayName": "0.4",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+{
+            "DisplayName": "0.5",
+            "Value": "2",
+            "Description": [
+               ""
+            ]
+         },	 
+{
+            "DisplayName": "0.6",
+            "Value": "3",
+            "Description": [
+               ""
+            ]
+         },	 	
+{
+            "DisplayName": "0.7",
+            "Value": "4",
+            "Description": [
+               ""
+            ]
+         },
+         {
+            "DisplayName": "0.8",
+            "Value": "5",
+            "Description": [
+               ""
+            ]
+         },
+{
+            "DisplayName": "0.9",
+            "Value": "6",
+            "Description": [
+               ""
+            ]
+         },	 
+{
+            "DisplayName": "1.0",
+            "Value": "7",
+            "Description": [
+               ""
+            ]
+         },	 			 
+      ],
+	  	  		"MBBPower": [
+	 {
+            "DisplayName": "0.3",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+         {
+            "DisplayName": "0.6",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+{
+            "DisplayName": "1.0",
+            "Value": "2",
+            "Description": [
+               ""
+            ]
+         },	 
+{
+            "DisplayName": "1.5",
+            "Value": "3",
+            "Description": [
+               ""
+            ]
+         },	 	
+{
+            "DisplayName": "3.0 (Vanilla)",
+            "Value": "4",
+            "Description": [
+               ""
+            ]
+         },	  			 
+      ],
+	  		"DOFForce": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+	  	   "DOFRes": [
+	 {
+            "DisplayName": "Quarter Res (Vanilla)",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "Half Res",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+	 {
+            "DisplayName": "Full Res",
+            "Value": "2",
+            "Description": [
+               ""
+            ]
+         }, 		 
+      ],
+	  	   "DOFType": [
+	 {
+            "DisplayName": "Standard (Vanilla)",
+            "Value": "0",
+            "Description": [
+               "Vanilla DOF Settings"
+            ]
+         },		 
+	 {
+            "DisplayName": "Reduced",
+            "Value": "1",
+            "Description": [
+               "Pushes out the DOF starting point so it only affects distant objects"
+            ]
+         },
+	 {
+            "DisplayName": "Soft",
+            "Value": "2",
+            "Description": [
+               "Softens the DOF, giving a more 'dreamy' bloomy look"
+            ]
+         }, 		 
+      ],
+	  		"LODEnhancement": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+	  		"FolDith": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+	  		"FolLOD": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "x1.3",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 
+	 {
+            "DisplayName": "x2",
+            "Value": "2",
+            "Description": [
+               ""
+            ]
+         }, 
+	 {
+            "DisplayName": "x3",
+            "Value": "3",
+            "Description": [
+               ""
+            ]
+         }, 		 
+      ],
+	  		"GrassDist": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "Max Fade",
+            "Value": "1",
+            "Description": [
+               "Extends the fade to the max distance where it still works"
+            ]
+         }, 
+	 {
+            "DisplayName": "Fade Disabled",
+            "Value": "2",
+            "Description": [
+               "Disables grass fade completely. Grass will be seen farther but you will also see it popping in and out."
+            ]
+         },  		 
+      ],
+	  	  		"SSGIEnable": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+	  	    "DentRange": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },		 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         }, 	 
+      ],
+		"KronosNightLUT": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         }, 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+      ],
+		"RheaNightLUT": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         }, 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+      ],
+		"OuranousNightLUT": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         }, 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+      ],
+		"AresNightLUT": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         }, 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+      ],
+		"ChaosNightLUT": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         }, 
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+      ],
+"GE_AutoExposure": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+      ],
+"GE_AresNightTonemap": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+      ],
+"Atmos_NightLight": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+      ],
+"EnhancedRain": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+      ],
+"RainVisible": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+      ],
+"Puddles": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+      ],
+		"SunPos": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+      ],
+"Stars": [
+	 {
+            "DisplayName": "Off",
+            "Value": "0",
+            "Description": [
+               ""
+            ]
+         },
+	 {
+            "DisplayName": "On",
+            "Value": "1",
+            "Description": [
+               ""
+            ]
+         },
+      ],
+
+   },
+   "IniFile": "config.ini"
+}

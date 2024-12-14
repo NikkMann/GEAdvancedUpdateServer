@@ -1,0 +1,109 @@
+Code "GE_SSSResolution"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+	#load "System.Xml.dll"
+
+	using System.IO;
+	using System.Xml.Serialization;
+
+	static bool IsConfigInitialised = false;
+	static int SSSResolution = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		SSSResolution = INI.Parse<int>(ini["SSSSettings"]["SSSResolution"], SSSResolution);
+        IsConfigInitialised = true;
+    }
+
+//Resolution adjustment
+	//taken from "Fix Resolution Resetting on Launch" by Hyper.
+	[XmlRoot(ElementName = "ScreenSetting")]
+	public class ScreenSetting
+	{
+		[XmlAttribute(AttributeName = "left")]
+		public int Left { get; set; }
+
+		[XmlAttribute(AttributeName = "top")]
+		public int Top { get; set; }
+
+		[XmlAttribute(AttributeName = "width")]
+		public int Width { get; set; }
+
+		[XmlAttribute(AttributeName = "height")]
+		public int Height { get; set; }
+
+		[XmlAttribute(AttributeName = "resolutionWidth")]
+		public int ResolutionWidth { get; set; }
+
+		[XmlAttribute(AttributeName = "resolutionHeight")]
+		public int ResolutionHeight { get; set; }
+
+		[XmlAttribute(AttributeName = "fullscreenStyle")]
+		public int FullscreenStyle { get; set; }
+
+		[XmlAttribute(AttributeName = "fullscreenState")]
+		public int FullscreenState { get; set; }
+	}
+
+	string xml = Path.Combine
+	(
+		Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+		@"SEGA\SonicFrontiers\steam\x64\screen_setting.xml"
+	);
+	try
+	{
+		if (File.Exists(xml))
+		{
+			using (StringReader reader = new StringReader(File.ReadAllText(xml)))
+			{
+				var screenSetting = (ScreenSetting)new XmlSerializer(typeof(ScreenSetting)).Deserialize(reader);
+
+				if (screenSetting.ResolutionWidth <= 0 || screenSetting.ResolutionHeight <= 0)
+				{
+					screenSetting.ResolutionWidth  = 1280;
+					screenSetting.ResolutionHeight = 720;
+				}
+				float gameRes = 720f / screenSetting.ResolutionHeight; //1 for 720p, 0.666666 for 1080p, 0.5 for 1440p, 0.333333 for 2160p
+				
+				if (SSSResolution == 1)
+				{
+				string[] levelIds = {"w1f01", "w1h01", "w5r01", "w5t01", "w5t02", "w1r03", "w1r04", "w2r01", "w3r01", "w4r01", "w6d01", "w6d02", "w6d03", "w6d04", "w6d05", "w6d06", "w6d07", "w6d08", "w6d09", "w6d10", "w7d01", "w7d02", "w7d03", "w7d04", "w7d05", "w7d06", "w7d07", "w7d08", "w8d01", "w8d02", "w8d03", "w8d04", "w8d05", "w8d06", "w9d03", "w9d04", "w9d02", "w9d07", "w9d06", "w9d05"};
+
+        foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+				for (int i = 0; i < 16; i ++)
+				{
+						RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, items[i].ssss.width);
+						float ssssWidth = 43.3f / gameRes; //default is 65, but that's way too strong still for 720p
+						RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].ssss.width, ssssWidth);
+				}
+				}
+				}
+			}
+		}
+		else
+			return;
+	}
+	catch (Exception ex)
+	{
+		Console.WriteLine($"{ex}");
+		return;
+	}

@@ -1,0 +1,44 @@
+Code "GE_AresNightTonemap"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int GE_AresNightTonemap = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		GE_AresNightTonemap = INI.Parse<int>(ini["Tonemap"]["GE_AresNightTonemap"], GE_AresNightTonemap);
+        IsConfigInitialised = true;
+    }
+
+if (GE_AresNightTonemap == 1)
+{
+    string[] levelIds = {"w2r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].tonemap.tonemapParamGT.linearSectionStart, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].tonemap.tonemapParamGT.linearSectionStart, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].tonemap.tonemapParamGT.linearSectionStart, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].tonemap.tonemapParamGT.linearSectionStart, 0.035f);
+    }
+}

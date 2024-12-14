@@ -1,0 +1,294 @@
+Code "GE_EnhRainKronosRhea"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int EnhancedRain = 0;
+	static int AtmosKronosLightingConfig = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		EnhancedRain = INI.Parse<int>(ini["Atmosphere"]["EnhancedRain"], EnhancedRain);
+        var mod1 = HMM.GetModByID("6DB4A0E0");
+
+		if (mod1 != null)
+	{
+		string mod1ConfigIniPath = System.IO.Path.Combine(mod1.Path, "config2.ini");
+		var ini1 = INI.Read(mod1ConfigIniPath);
+
+		AtmosKronosLightingConfig = INI.Parse<int>(ini1["Lighting"]["AtmosKronosLightingConfig"], AtmosKronosLightingConfig);
+	}
+        IsConfigInitialised = true;
+    }
+
+if (EnhancedRain == 1 && AtmosKronosLightingConfig == 0 && (LevelInfo.GetCurrentStageID() == "w1r03" || LevelInfo.GetCurrentStageID() == "w1r05"))
+{
+	var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w1r03");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropLength, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropLength, 0.3f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropCameraRotation, 0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropCameraRotation, 0f);
+
+    RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropColor.W, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropColor.W, 0.01f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropWind, 0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropWind, 0f);
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.intensity, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.intensity, 0.5f);
+    
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.filterRange, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.filterRange, 150.0f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.filterEdge, 0.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.filterEdge, 0.0f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.filterAngle, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.filterAngle, 0.4f);
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropRange, 40.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropRange, 40.0f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].weather.rain.filterColor.W, 0.003f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].weather.rain.filterColor.W, 0.003f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].weather.rain.filterColor.W, 0.003f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].weather.rain.filterColor.W, 0.007f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].weather.rain.filterColor.W, 0.018f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].weather.rain.filterColor.W, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].weather.rain.filterColor.W, 0.1f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].weather.rain.filterColor.W, 0.15f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].weather.rain.filterColor.W, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].weather.rain.filterColor.W, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].weather.rain.filterColor.W, 0.15f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].weather.rain.filterColor.W, 0.075f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].weather.rain.filterColor.W, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].weather.rain.filterColor.W, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].weather.rain.filterColor.W, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].weather.rain.filterColor.W, 0.003f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].weather.rain.filterColor.W, 0.003f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[17].weather.rain.filterColor.W, 0.003f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[18].weather.rain.filterColor.W, 0.003f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[19].weather.rain.filterColor.W, 0.003f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[20].weather.rain.filterColor.W, 0.003f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[21].weather.rain.filterColor.W, 0.003f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[22].weather.rain.filterColor.W, 0.003f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[23].weather.rain.filterColor.W, 0.003f);
+}
+
+Code "GE_EnhRainOuranos"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int EnhancedRain = 0;
+	static int AtmosOuranosLightingConfig = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		EnhancedRain = INI.Parse<int>(ini["Atmosphere"]["EnhancedRain"], EnhancedRain);
+		var mod1 = HMM.GetModByID("6DB4A0E0");
+
+		if (mod1 != null)
+	{
+		string mod1ConfigIniPath = System.IO.Path.Combine(mod1.Path, "config2.ini");
+		var ini1 = INI.Read(mod1ConfigIniPath);
+
+		AtmosOuranosLightingConfig = INI.Parse<int>(ini1["Lighting"]["AtmosOuranosLightingConfig"], AtmosOuranosLightingConfig);
+	}
+        IsConfigInitialised = true;
+    }
+
+if (EnhancedRain == 1 && AtmosOuranosLightingConfig == 0 && (LevelInfo.GetCurrentStageID() == "w1r04" || LevelInfo.GetCurrentStageID() == "w1r06"))
+{
+	var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w1r04");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropLength, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropLength, 0.3f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropCameraRotation, 0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropCameraRotation, 0f);
+
+    RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropColor.W, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropColor.W, 0.01f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropWind, 0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropWind, 0f);
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.intensity, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.intensity, 0.5f);
+    
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.filterRange, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.filterRange, 150.0f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.filterEdge, 0.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.filterEdge, 0.0f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.filterAngle, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.filterAngle, 0.4f);
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropRange, 40.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropRange, 40.0f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].weather.rain.filterColor.W, 0.004f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].weather.rain.filterColor.W, 0.004f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].weather.rain.filterColor.W, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].weather.rain.filterColor.W, 0.015f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].weather.rain.filterColor.W, 0.12f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].weather.rain.filterColor.W, 0.22f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].weather.rain.filterColor.W, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].weather.rain.filterColor.W, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].weather.rain.filterColor.W, 0.55f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].weather.rain.filterColor.W, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].weather.rain.filterColor.W, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].weather.rain.filterColor.W, 0.25f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].weather.rain.filterColor.W, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].weather.rain.filterColor.W, 0.06f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].weather.rain.filterColor.W, 0.0075f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].weather.rain.filterColor.W, 0.004f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].weather.rain.filterColor.W, 0.004f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[17].weather.rain.filterColor.W, 0.004f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[18].weather.rain.filterColor.W, 0.004f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[19].weather.rain.filterColor.W, 0.004f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[20].weather.rain.filterColor.W, 0.004f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[21].weather.rain.filterColor.W, 0.004f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[22].weather.rain.filterColor.W, 0.004f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[23].weather.rain.filterColor.W, 0.004f);
+}
+
+Code "GE_EnhRainChaos"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int EnhancedRain = 0;
+	static int AtmosChaosLightingConfig = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		EnhancedRain = INI.Parse<int>(ini["Atmosphere"]["EnhancedRain"], EnhancedRain);
+		var mod1 = HMM.GetModByID("6DB4A0E0");
+
+		if (mod1 != null)
+	{
+
+		string mod1ConfigIniPath = System.IO.Path.Combine(mod1.Path, "config2.ini");
+		var ini1 = INI.Read(mod1ConfigIniPath);
+
+		AtmosChaosLightingConfig = INI.Parse<int>(ini1["Lighting"]["AtmosChaosLightingConfig"], AtmosChaosLightingConfig);
+	}
+        IsConfigInitialised = true;
+    }
+
+if (EnhancedRain == 1 && AtmosChaosLightingConfig == 0 && LevelInfo.GetCurrentStageID() == "w3r01")
+{
+	var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w3r01");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropLength, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropLength, 0.3f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropCameraRotation, 0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropCameraRotation, 0f);
+
+    RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropColor.W, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropColor.W, 0.01f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropWind, 0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropWind, 0f);
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.intensity, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.intensity, 0.5f);
+    
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.filterRange, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.filterRange, 150.0f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.filterEdge, 0.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.filterEdge, 0.0f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.filterAngle, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.filterAngle, 0.4f);
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].weather.rain.dropRange, 40.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].weather.rain.dropRange, 40.0f);
+	
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].weather.rain.filterColor.W, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].weather.rain.filterColor.W, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].weather.rain.filterColor.W, 0.015f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].weather.rain.filterColor.W, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].weather.rain.filterColor.W, 0.075f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].weather.rain.filterColor.W, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].weather.rain.filterColor.W, 0.08f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].weather.rain.filterColor.W, 0.15f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].weather.rain.filterColor.W, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].weather.rain.filterColor.W, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].weather.rain.filterColor.W, 0.15f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].weather.rain.filterColor.W, 0.075f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].weather.rain.filterColor.W, 0.075f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].weather.rain.filterColor.W, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].weather.rain.filterColor.W, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].weather.rain.filterColor.W, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].weather.rain.filterColor.W, 0.02f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[17].weather.rain.filterColor.W, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[18].weather.rain.filterColor.W, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[19].weather.rain.filterColor.W, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[20].weather.rain.filterColor.W, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[21].weather.rain.filterColor.W, 0.053f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[22].weather.rain.filterColor.W, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[23].weather.rain.filterColor.W, 0.035f);
+}

@@ -1,0 +1,374 @@
+Code "GE_KronosNightLUT"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int KronosNightLUT = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		KronosNightLUT = INI.Parse<int>(ini["NeutralNightLUT"]["KronosNightLUT"], KronosNightLUT);
+        IsConfigInitialised = true;
+    }
+
+if (KronosNightLUT == 1 && LevelInfo.GetCurrentStageID() == "w1r03")
+{
+	var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w1r03");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+
+	{
+        for (int t = 0; t < 24; t++) {
+            RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+        }
+
+        RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[1].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+        RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+		RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.Z, 0.05f);
+    }
+}
+
+Code "GE_RheaNightLUT"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int RheaNightLUT = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		RheaNightLUT = INI.Parse<int>(ini["NeutralNightLUT"]["RheaNightLUT"], RheaNightLUT);
+        IsConfigInitialised = true;
+    }
+
+if (RheaNightLUT == 1 && LevelInfo.GetCurrentStageID() == "w1r05")
+{
+	var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w1r03");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+
+	{
+        for (int t = 0; t < 24; t++) {
+            RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+        }
+
+        RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[1].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+        RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+		RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.Z, 0.05f);
+    }
+}
+
+Code "GE_OuranousNightLUT"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int OuranousNightLUT = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		OuranousNightLUT = INI.Parse<int>(ini["NeutralNightLUT"]["OuranousNightLUT"], OuranousNightLUT);
+        IsConfigInitialised = true;
+    }
+
+if (OuranousNightLUT == 1 && (LevelInfo.GetCurrentStageID() == "w1r04" || LevelInfo.GetCurrentStageID() == "w1r06"))
+{
+	var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w1r04");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+
+	{
+        for (int t = 0; t < 24; t++) {
+            RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+        }
+
+        RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[1].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+        RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+		RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.Z, 0.05f);
+    }
+}
+
+Code "GE_AresNightLUT"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int AresNightLUT = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		AresNightLUT = INI.Parse<int>(ini["NeutralNightLUT"]["AresNightLUT"], AresNightLUT);
+        IsConfigInitialised = true;
+    }
+
+if (AresNightLUT == 1 && LevelInfo.GetCurrentStageID() == "w2r01")
+{
+	var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w2r01");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+
+	{
+        for (int t = 0; t < 24; t++) {
+            RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+        }
+
+        RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[1].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+        RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+		RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.Z, 0.05f);
+    }
+}
+
+Code "GE_ChaosNightLUT"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int ChaosNightLUT = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		ChaosNightLUT = INI.Parse<int>(ini["NeutralNightLUT"]["ChaosNightLUT"], ChaosNightLUT);
+        IsConfigInitialised = true;
+    }
+
+if (ChaosNightLUT == 1 && LevelInfo.GetCurrentStageID() == "w3r01")
+{
+	var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w3r01");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+
+	{
+        for (int t = 0; t < 24; t++) {
+            RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+        }
+
+        RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[1].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+        RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].colorContrast.lutIndex1, NeedleFxSceneData.LutIndex.LUT_INDEX_DEFAULT);
+		RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].lightscattering.color.Z, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.X, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.Y, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].lightscattering.color.Z, 0.05f);
+    }
+}

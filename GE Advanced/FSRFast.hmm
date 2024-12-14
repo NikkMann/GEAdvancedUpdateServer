@@ -1,0 +1,42 @@
+Code "GE_FastFSR"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int FSRFast = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		FSRFast = INI.Parse<int>(ini["FSRSettings"]["FSRFast"], FSRFast);
+        IsConfigInitialised = true;
+    }
+
+if (FSRFast == 1)
+{
+    string[] levelIds = {"w1f01", "w1h01", "w5r01", "w5t01", "w5t02", "w1r03", "w1r04", "w2r01", "w3r01", "w4r01", "w6d01", "w6d02", "w6d03", "w6d04", "w6d05", "w6d06", "w6d07", "w6d08", "w6d09", "w6d10", "w7d01", "w7d02", "w7d03", "w7d04", "w7d05", "w7d06", "w7d07", "w7d08", "w8d01", "w8d02", "w8d03", "w8d04", "w8d05", "w8d06", "w9d03", "w9d04", "w9d02", "w9d07", "w9d06", "w9d05"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, config.antialiasing.usType, NeedleFxSceneData.UpscaleType.USTYPE_FSR_FAST);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, config.antialiasing.fsrSharpness, 0.65f);
+}
+    }
+

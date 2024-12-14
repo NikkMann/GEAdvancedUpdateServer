@@ -1,0 +1,763 @@
+Code "GE_AutoExposureKronosRhea"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int GE_AutoExposure = 0;
+	static int AtmosKronosLightingConfig = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		GE_AutoExposure = INI.Parse<int>(ini["Tonemap"]["GE_AutoExposure"], GE_AutoExposure);
+
+		var mod1 = HMM.GetModByID("6DB4A0E0");
+
+		if (mod1 != null)
+	{
+		string mod1ConfigIniPath = System.IO.Path.Combine(mod1.Path, "config2.ini");
+		var ini1 = INI.Read(mod1ConfigIniPath);
+
+		AtmosKronosLightingConfig = INI.Parse<int>(ini1["Lighting"]["AtmosKronosLightingConfig"], AtmosKronosLightingConfig);
+	}
+        IsConfigInitialised = true;
+    }
+
+if (GE_AutoExposure == 1 && AtmosKronosLightingConfig == 0)
+{
+    string[] levelIds = {"w1r03"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControl.autoExposure.lumMin, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControlEvent.autoExposure.lumMin, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControl.autoExposure.lumMin, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControlEvent.autoExposure.lumMin, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControl.autoExposure.lumMin, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControlEvent.autoExposure.lumMin, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControl.autoExposure.middleGray, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControl.autoExposure.lumMax, 2.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControl.autoExposure.lumMin, 0.35f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControl.autoExposure.cutMax, 2.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControlEvent.autoExposure.middleGray, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControlEvent.autoExposure.lumMax, 2.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControlEvent.autoExposure.lumMin, 0.35f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControlEvent.autoExposure.cutMax, 2.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.middleGray, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.lumMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.lumMin, 0.12f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.middleGray, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.lumMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.lumMin, 0.12f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControl.autoExposure.middleGray, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControl.autoExposure.lumMax, 2.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControlEvent.autoExposure.middleGray, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControlEvent.autoExposure.lumMax, 2.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.middleGray, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.lumMax, 4.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.lumMin, 0.35f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.cutMax, 16.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.middleGray, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.lumMax, 4.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.lumMin, 0.35f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.cutMax, 16.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.middleGray, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.lumMax, 4.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.lumMin, 0.7f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.middleGray, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.lumMax, 4.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.lumMin, 0.7f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.middleGray, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.lumMax, 4.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.middleGray, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.lumMax, 4.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.middleGray, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.lumMax, 4.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.middleGray, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.lumMax, 4.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.middleGray, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.lumMax, 4.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.middleGray, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.lumMax, 4.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.middleGray, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.lumMax, 5.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.lumMin, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.cutMax, 16.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.middleGray, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.lumMax, 5.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.lumMin, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.cutMax, 16.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControl.autoExposure.middleGray, 0.35f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControl.autoExposure.lumMax, 3.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControl.autoExposure.lumMin, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControl.autoExposure.cutMax, 16.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControlEvent.autoExposure.middleGray, 0.35f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControlEvent.autoExposure.lumMax, 3.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControlEvent.autoExposure.lumMin, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControlEvent.autoExposure.cutMax, 16.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControl.autoExposure.lumMax, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControl.autoExposure.lumMin, 0.1f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControl.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControlEvent.autoExposure.lumMax, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControlEvent.autoExposure.lumMin, 0.1f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControlEvent.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControl.autoExposure.lumMin, 0.013f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControl.autoExposure.cutMax, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControlEvent.autoExposure.lumMin, 0.013f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControlEvent.autoExposure.cutMax, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControl.autoExposure.lumMin, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControl.autoExposure.cutMax, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControlEvent.autoExposure.lumMin, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControlEvent.autoExposure.cutMax, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControl.autoExposure.lumMin, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControlEvent.autoExposure.lumMin, 0.01f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].cameraControl.autoExposure.lumMin, -0.06f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].cameraControlEvent.autoExposure.lumMin, -0.06f);
+    }
+}
+
+Code "GE_AutoExposureAres"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int GE_AutoExposure = 0;
+	static int AtmosAresLightingConfig = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		GE_AutoExposure = INI.Parse<int>(ini["Tonemap"]["GE_AutoExposure"], GE_AutoExposure);
+
+		var mod1 = HMM.GetModByID("6DB4A0E0");
+
+		if (mod1 != null)
+	{
+		string mod1ConfigIniPath = System.IO.Path.Combine(mod1.Path, "config2.ini");
+		var ini1 = INI.Read(mod1ConfigIniPath);
+
+		AtmosAresLightingConfig = INI.Parse<int>(ini1["Lighting"]["AtmosAresLightingConfig"], AtmosAresLightingConfig);
+	}
+        IsConfigInitialised = true;
+    }
+
+if (AtmosAresLightingConfig == 0)
+{
+    string[] levelIds = {"w2r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].atmosphere.brunetonSkyParam.debugSkyCubeIntensity, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].atmosphere.brunetonSkyParam.debugSkyCubeIntensity, 2.0f);
+    }
+}
+
+if (GE_AutoExposure == 1 && AtmosAresLightingConfig == 0)
+{
+    string[] levelIds = {"w2r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControl.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControl.autoExposure.lumMax, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControl.autoExposure.lumMin, 0.005f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControl.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControl.autoExposure.lumMax, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControl.autoExposure.lumMin, 0.005f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControl.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControl.autoExposure.lumMax, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControl.autoExposure.lumMin, 0.008f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControl.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControl.autoExposure.lumMin, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.middleGray, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.lumMax, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.lumMin, 0.125f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.cutMin, 0.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControl.autoExposure.middleGray, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControl.autoExposure.lumMax, 2.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControl.autoExposure.lumMin, 0.25f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControl.autoExposure.cutMin, 0.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.middleGray, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.lumMax, 4.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.lumMin, 0.65f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.cutMax, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.pctMin, 35.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.middleGray, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.lumMax, 3.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.lumMin, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.cutMax, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.pctMin, 35.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.middleGray, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.lumMin, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.cutMax, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.pctMin, 35.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.middleGray, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.lumMax, 5.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.lumMin, 1.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.cutMax, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.pctMin, 35.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.middleGray, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.lumMax, 4.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.lumMin, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.cutMax, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.pctMin, 35.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.middleGray, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.lumMax, 3.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.lumMin, 0.65f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.cutMax, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.cutMin, 0.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.pctMin, 35.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControl.autoExposure.middleGray, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControl.autoExposure.lumMax, 10.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControl.autoExposure.lumMin, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControl.autoExposure.cutMin, 0.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControl.autoExposure.middleGray, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControl.autoExposure.lumMin, 0.15f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControl.autoExposure.cutMin, 0.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControl.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControl.autoExposure.lumMax, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControl.autoExposure.lumMin, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControl.autoExposure.cutMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControl.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControl.autoExposure.lumMax, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControl.autoExposure.lumMin, 0.008f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControl.autoExposure.cutMax, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControl.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControl.autoExposure.lumMax, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControl.autoExposure.lumMin, 0.005f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[0].cameraControl.autoExposure.middleGray, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[1].cameraControl.autoExposure.middleGray, 0.005f);
+    }
+}
+
+if (GE_AutoExposure == 1 && AtmosAresLightingConfig == 0)
+{
+    string[] levelIds = {"w2r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControlEvent.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControlEvent.autoExposure.lumMax, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControlEvent.autoExposure.lumMin, 0.005f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControlEvent.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControlEvent.autoExposure.lumMax, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControlEvent.autoExposure.lumMin, 0.005f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControlEvent.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControlEvent.autoExposure.lumMax, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControlEvent.autoExposure.lumMin, 0.008f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControlEvent.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControlEvent.autoExposure.lumMin, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.middleGray, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.lumMax, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.lumMin, 0.125f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.cutMin, 0.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControlEvent.autoExposure.middleGray, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControlEvent.autoExposure.lumMax, 2.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControlEvent.autoExposure.lumMin, 0.25f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControlEvent.autoExposure.cutMin, 0.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.middleGray, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.lumMax, 4.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.lumMin, 0.65f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.cutMax, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.pctMin, 35.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.middleGray, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.lumMax, 3.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.lumMin, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.cutMax, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.pctMin, 35.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.middleGray, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.lumMin, 1.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.cutMax, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.pctMin, 35.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.middleGray, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.lumMax, 5.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.lumMin, 1.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.cutMax, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.pctMin, 35.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.middleGray, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.lumMax, 4.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.lumMin, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.cutMax, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.pctMin, 35.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.middleGray, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.lumMax, 3.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.lumMin, 0.65f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.cutMax, 150.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.cutMin, 0.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.pctMin, 35.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControlEvent.autoExposure.middleGray, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControlEvent.autoExposure.lumMax, 10.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControlEvent.autoExposure.lumMin, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControlEvent.autoExposure.cutMin, 0.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControlEvent.autoExposure.middleGray, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControlEvent.autoExposure.lumMin, 0.15f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControlEvent.autoExposure.cutMin, 0.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControlEvent.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControlEvent.autoExposure.lumMax, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControlEvent.autoExposure.lumMin, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControlEvent.autoExposure.cutMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControlEvent.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControlEvent.autoExposure.lumMax, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControlEvent.autoExposure.lumMin, 0.008f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControlEvent.autoExposure.cutMax, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControlEvent.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControlEvent.autoExposure.lumMax, 0.035f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControlEvent.autoExposure.lumMin, 0.005f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[0].cameraControlEvent.autoExposure.middleGray, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[1].cameraControlEvent.autoExposure.middleGray, 0.005f);
+    }
+}
+
+Code "GE_AutoExposureChaos"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int GE_AutoExposure = 0;
+	static int AtmosChaosLightingConfig = 0;
+
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		GE_AutoExposure = INI.Parse<int>(ini["Tonemap"]["GE_AutoExposure"], GE_AutoExposure);
+
+		var mod1 = HMM.GetModByID("6DB4A0E0");
+
+		if (mod1 != null)
+	{
+
+		string mod1ConfigIniPath = System.IO.Path.Combine(mod1.Path, "config2.ini");
+		var ini1 = INI.Read(mod1ConfigIniPath);
+
+		AtmosChaosLightingConfig = INI.Parse<int>(ini1["Lighting"]["AtmosChaosLightingConfig"], AtmosChaosLightingConfig);
+	}
+        IsConfigInitialised = true;
+    }
+
+if (AtmosChaosLightingConfig == 0)
+{
+    string[] levelIds = {"w3r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].atmosphere.brunetonSkyParam.debugSkyCubeIntensity, 4.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].atmosphere.brunetonSkyParam.debugSkyCubeIntensity, 2.0f);
+    }
+}
+
+if (GE_AutoExposure == 1 && AtmosChaosLightingConfig == 0)
+{
+    string[] levelIds = {"w3r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControl.autoExposure.lumMin, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControl.autoExposure.cutMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControl.autoExposure.lumMin, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControl.autoExposure.cutMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControl.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControl.autoExposure.lumMin, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControl.autoExposure.cutMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControl.autoExposure.lumMin, 0.065f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControl.autoExposure.cutMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.middleGray, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.lumMax, 0.6f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.lumMin, 0.125f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.cutMax, 8.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControl.autoExposure.middleGray, 0.135f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControl.autoExposure.lumMax, 0.6f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControl.autoExposure.lumMin, 0.1f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.middleGray, 0.265f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.lumMax, 2.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.lumMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.middleGray, 0.275f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.lumMax, 3.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.lumMin, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.middleGray, 0.265f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.lumMax, 4.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.middleGray, 0.265f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.lumMax, 4.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.middleGray, 0.265f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.lumMax, 3.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.middleGray, 0.275f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.lumMax, 2.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.lumMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControl.autoExposure.middleGray, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControl.autoExposure.lumMax, 1.25f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControl.autoExposure.lumMin, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControl.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControl.autoExposure.middleGray, 0.15f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControl.autoExposure.lumMax, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControl.autoExposure.lumMin, 0.25f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControl.autoExposure.cutMax, 8.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControl.autoExposure.lumMin, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControl.autoExposure.cutMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControl.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControl.autoExposure.lumMin, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControl.autoExposure.cutMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControl.autoExposure.lumMin, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControl.autoExposure.cutMax, 1.0f);
+    }
+}
+
+if (GE_AutoExposure == 1 && AtmosChaosLightingConfig == 0)
+{
+    string[] levelIds = {"w3r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControlEvent.autoExposure.lumMin, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControlEvent.autoExposure.cutMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControlEvent.autoExposure.lumMin, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControlEvent.autoExposure.cutMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControlEvent.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControlEvent.autoExposure.lumMin, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControlEvent.autoExposure.cutMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControlEvent.autoExposure.lumMin, 0.065f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControlEvent.autoExposure.cutMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.lumMax, 0.6f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.lumMin, 0.125f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.cutMax, 8.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControlEvent.autoExposure.middleGray, 0.135f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControlEvent.autoExposure.lumMax, 0.6f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControlEvent.autoExposure.lumMin, 0.1f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.middleGray, 0.265f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.lumMax, 2.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.lumMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.middleGray, 0.275f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.lumMax, 3.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.lumMin, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.middleGray, 0.265f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.lumMax, 4.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.middleGray, 0.265f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.lumMax, 4.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.middleGray, 0.265f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.lumMax, 3.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.middleGray, 0.275f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.lumMax, 2.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.lumMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControlEvent.autoExposure.middleGray, 0.2f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControlEvent.autoExposure.lumMax, 1.25f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControlEvent.autoExposure.lumMin, 0.4f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControlEvent.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControlEvent.autoExposure.middleGray, 0.15f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControlEvent.autoExposure.lumMax, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControlEvent.autoExposure.lumMin, 0.25f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControlEvent.autoExposure.cutMax, 8.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControlEvent.autoExposure.lumMin, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControlEvent.autoExposure.cutMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControlEvent.autoExposure.middleGray, 0.03f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControlEvent.autoExposure.lumMin, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControlEvent.autoExposure.cutMax, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControlEvent.autoExposure.lumMin, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControlEvent.autoExposure.cutMax, 1.0f);
+    }
+}
+
+Code "GE_AutoExposureOuranos"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int GE_AutoExposure = 0;
+	static int AtmosOuranosLightingConfig = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		GE_AutoExposure = INI.Parse<int>(ini["Tonemap"]["GE_AutoExposure"], GE_AutoExposure);
+
+		var mod1 = HMM.GetModByID("6DB4A0E0");
+
+		if (mod1 != null)
+	{
+		string mod1ConfigIniPath = System.IO.Path.Combine(mod1.Path, "config2.ini");
+		var ini1 = INI.Read(mod1ConfigIniPath);
+
+		AtmosOuranosLightingConfig = INI.Parse<int>(ini1["Lighting"]["AtmosOuranosLightingConfig"], AtmosOuranosLightingConfig);
+	}
+        IsConfigInitialised = true;
+    }
+
+if (AtmosOuranosLightingConfig == 0)
+{
+    string[] levelIds = {"w1r04"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].atmosphere.brunetonSkyParam.debugSkyCubeIntensity, 5.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].atmosphere.brunetonSkyParam.debugSkyCubeIntensity, 5.0f);
+    }
+}
+
+if (GE_AutoExposure == 1 && AtmosOuranosLightingConfig == 0)
+{
+    string[] levelIds = {"w1r04"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControl.autoExposure.lumMin, 0.015f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControl.autoExposure.lumMin, 0.015f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControl.autoExposure.lumMin, 0.025f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControl.autoExposure.lumMax, 0.1f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControl.autoExposure.lumMin, 0.025f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.middleGray, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.lumMax, 2.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.lumMin, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControl.autoExposure.cutMax, 8.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControl.autoExposure.lumMin, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControl.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.middleGray, 0.475f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.middleGray, 0.475f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.lumMin, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.middleGray, 0.475f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.lumMin, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.middleGray, 0.475f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.lumMin, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.middleGray, 0.475f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.lumMin, 0.85f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControl.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControl.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControl.autoExposure.lumMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControl.autoExposure.lumMin, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControl.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControl.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControl.autoExposure.cutMin, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControl.autoExposure.lumMax, 0.075f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControl.autoExposure.lumMin, 0.025f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControl.autoExposure.lumMin, 0.015f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControl.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControl.autoExposure.lumMin, 0.015f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[1].cameraControl.autoExposure.lumMin, -0.015f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].cameraControl.autoExposure.lumMin, -0.015f);
+    }
+}
+
+if (GE_AutoExposure == 1 && AtmosOuranosLightingConfig == 0)
+{
+    string[] levelIds = {"w1r04"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].cameraControlEvent.autoExposure.lumMin, 0.015f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].cameraControlEvent.autoExposure.lumMin, 0.015f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].cameraControlEvent.autoExposure.lumMin, 0.025f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControlEvent.autoExposure.lumMax, 0.1f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].cameraControlEvent.autoExposure.lumMin, 0.025f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.middleGray, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.lumMax, 2.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.lumMin, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].cameraControlEvent.autoExposure.cutMax, 8.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControlEvent.autoExposure.lumMin, 0.5f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].cameraControlEvent.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.middleGray, 0.475f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.middleGray, 0.475f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.lumMin, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.middleGray, 0.475f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.lumMin, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.middleGray, 0.475f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.lumMin, 1.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.middleGray, 0.475f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.lumMin, 0.85f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].cameraControlEvent.autoExposure.cutMax, 18.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.lumMin, 0.75f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].cameraControlEvent.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControlEvent.autoExposure.lumMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].cameraControlEvent.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControlEvent.autoExposure.lumMin, 0.3f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControlEvent.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControlEvent.autoExposure.cutMax, 12.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].cameraControlEvent.autoExposure.cutMin, 0.05f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControlEvent.autoExposure.lumMax, 0.075f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].cameraControlEvent.autoExposure.lumMin, 0.025f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].cameraControlEvent.autoExposure.lumMin, 0.015f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControlEvent.autoExposure.middleGray, 0.04f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].cameraControlEvent.autoExposure.lumMin, 0.015f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[1].cameraControlEvent.autoExposure.lumMin, -0.015f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].cameraControlEvent.autoExposure.lumMin, -0.015f);
+    }
+}

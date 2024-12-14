@@ -1,0 +1,161 @@
+Code "Kronos RheaSSGI"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int SSGIEnable = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		SSGIEnable = INI.Parse<int>(ini["SSGISettings"]["SSGIEnable"], SSGIEnable);
+        IsConfigInitialised = true;
+    }
+
+if (SSGIEnable == 1 && (LevelInfo.GetCurrentStageID() == "w1r03" || LevelInfo.GetCurrentStageID() == "w1r05"))
+{
+	var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w1r03");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[0].ssgi.enable, true);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[0].ssgi.intensity, 5.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[0].ssgi.debugParam.rayLength, 2.0f);
+}
+
+Code "OuranosSSGI"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int SSGIEnable = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		SSGIEnable = INI.Parse<int>(ini["SSGISettings"]["SSGIEnable"], SSGIEnable);
+        IsConfigInitialised = true;
+    }
+
+if (SSGIEnable == 1 && (LevelInfo.GetCurrentStageID() == "w1r04" || LevelInfo.GetCurrentStageID() == "w1r06"))
+{
+	var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w1r04");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[0].ssgi.enable, true);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[0].ssgi.intensity, 5.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[0].ssgi.debugParam.rayLength, 2.0f);
+}
+
+Code "AresSSGI"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int SSGIEnable = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		SSGIEnable = INI.Parse<int>(ini["SSGISettings"]["SSGIEnable"], SSGIEnable);
+        IsConfigInitialised = true;
+    }
+
+if (SSGIEnable == 1 && LevelInfo.GetCurrentStageID() == "w2r01")
+{
+	var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w2r01");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[0].ssgi.enable, true);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[0].ssgi.intensity, 20.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[0].ssgi.useParameter, false);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[0].ssgi.debugParam.rayLength, 1.0f);
+}
+
+Code "ChaosSSGI"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int SSGIEnable = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		SSGIEnable = INI.Parse<int>(ini["SSGISettings"]["SSGIEnable"], SSGIEnable);
+        IsConfigInitialised = true;
+    }
+
+if (SSGIEnable == 1 && LevelInfo.GetCurrentStageID() == "w3r01")
+{
+	var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w3r01");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[0].ssgi.enable, true);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[0].ssgi.intensity, 20.0f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[0].ssgi.useParameter, false);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[0].ssgi.debugParam.rayLength, 1.0f);
+}

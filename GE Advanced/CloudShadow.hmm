@@ -1,0 +1,75 @@
+Code "CloudShadow"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int CloudShadow = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		CloudShadow = INI.Parse<int>(ini["ShadowSettings"]["CloudShadow"], CloudShadow);
+        IsConfigInitialised = true;
+    }
+
+if (CloudShadow == 0)
+{
+    string[] levelIds = {"w1r04"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[1].atmosphere.cloudParam.shadowValueMin, 0.05f);
+    }
+}
+
+if (CloudShadow == 1)
+{
+    string[] levelIds = {"w1r03", "w1r04", "w2r01", "w3r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[0].atmosphere.cloudParam.shadowValueMin, 0.6f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[1].atmosphere.cloudParam.shadowValueMin, 0.6f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[2].atmosphere.cloudParam.shadowValueMin, 0.6f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[3].atmosphere.cloudParam.shadowValueMin, 0.6f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[4].atmosphere.cloudParam.shadowValueMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[5].atmosphere.cloudParam.shadowValueMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[6].atmosphere.cloudParam.shadowValueMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[7].atmosphere.cloudParam.shadowValueMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[8].atmosphere.cloudParam.shadowValueMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[9].atmosphere.cloudParam.shadowValueMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[10].atmosphere.cloudParam.shadowValueMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[11].atmosphere.cloudParam.shadowValueMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[12].atmosphere.cloudParam.shadowValueMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[13].atmosphere.cloudParam.shadowValueMin, 0.45f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[14].atmosphere.cloudParam.shadowValueMin, 0.6f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[15].atmosphere.cloudParam.shadowValueMin, 0.6f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[16].atmosphere.cloudParam.shadowValueMin, 0.6f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[0].atmosphere.cloudParam.shadowValueMin, 0.1f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[1].atmosphere.cloudParam.shadowValueMin, 0.1f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[2].atmosphere.cloudParam.shadowValueMin, 0.1f);
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[3].atmosphere.cloudParam.shadowValueMin, 0.1f);
+    }
+}

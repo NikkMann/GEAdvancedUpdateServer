@@ -1,0 +1,33 @@
+Code "GE_MB2d"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int MB2d = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		MB2d = INI.Parse<int>(ini["MBSettings"]["MB2d"], MB2d);
+        IsConfigInitialised = true;
+    }
+
+if (MB2d == 1)
+{
+WriteProtected<byte>(0x148427796, 1);
+WriteProtected<byte>(0x14842674B, 1);
+}

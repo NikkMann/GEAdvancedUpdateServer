@@ -1,0 +1,152 @@
+Code "RainVisibleKronosRhea"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+	static bool IsConfigInitialised = false;
+	static int RainVisible = 0;
+	static int AtmosKronosLightingConfig = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		RainVisible = INI.Parse<int>(ini["Atmosphere"]["RainVisible"], RainVisible);
+		var mod1 = HMM.GetModByID("6DB4A0E0");
+
+		if (mod1 != null)
+	{
+		string mod1ConfigIniPath = System.IO.Path.Combine(mod1.Path, "config2.ini");
+		var ini1 = INI.Read(mod1ConfigIniPath);
+
+		AtmosKronosLightingConfig = INI.Parse<int>(ini1["Lighting"]["AtmosKronosLightingConfig"], AtmosKronosLightingConfig);
+	}
+        IsConfigInitialised = true;
+    }
+
+if (RainVisible == 1 && AtmosKronosLightingConfig == 0 && (LevelInfo.GetCurrentStageID() == "w1r03" || LevelInfo.GetCurrentStageID() == "w1r05"))
+{
+    var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w1r03");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+for (int t = 0; t < 24; t++)
+	{
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, timeItems[t].weather.rain.filterColor.W);
+	float _lSStf = RFL_GET_PARAM(NeedleFxSceneDataInfo, timeItems[t].weather.rain.filterColor.W) * 0.65f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].weather.rain.filterColor.W, _lSStf);
+		}
+}
+
+Code "RainVisibleOuranos"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+	static bool IsConfigInitialised = false;
+	static int RainVisible = 0;
+	static int AtmosOuranosLightingConfig = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		RainVisible = INI.Parse<int>(ini["Atmosphere"]["RainVisible"], RainVisible);
+		var mod1 = HMM.GetModByID("6DB4A0E0");
+
+		if (mod1 != null)
+	{
+		string mod1ConfigIniPath = System.IO.Path.Combine(mod1.Path, "config2.ini");
+		var ini1 = INI.Read(mod1ConfigIniPath);
+
+		AtmosOuranosLightingConfig = INI.Parse<int>(ini1["Lighting"]["AtmosOuranosLightingConfig"], AtmosOuranosLightingConfig);
+	}
+        IsConfigInitialised = true;
+    }
+
+if (RainVisible == 1 && AtmosOuranosLightingConfig == 0 && (LevelInfo.GetCurrentStageID() == "w1r04" || LevelInfo.GetCurrentStageID() == "w1r06"))
+{
+    var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w1r04");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+for (int t = 0; t < 24; t++)
+	{
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, timeItems[t].weather.rain.filterColor.W);
+	float _lSStf = RFL_GET_PARAM(NeedleFxSceneDataInfo, timeItems[t].weather.rain.filterColor.W) * 0.65f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].weather.rain.filterColor.W, _lSStf);
+		}
+}
+
+Code "RainVisibleChaos"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+	static bool IsConfigInitialised = false;
+	static int RainVisible = 0;
+	static int AtmosChaosLightingConfig = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		RainVisible = INI.Parse<int>(ini["Atmosphere"]["RainVisible"], RainVisible);
+		var mod1 = HMM.GetModByID("6DB4A0E0");
+
+		if (mod1 != null)
+	{
+		string mod1ConfigIniPath = System.IO.Path.Combine(mod1.Path, "config2.ini");
+		var ini1 = INI.Read(mod1ConfigIniPath);
+
+		AtmosChaosLightingConfig = INI.Parse<int>(ini1["Lighting"]["AtmosChaosLightingConfig"], AtmosChaosLightingConfig);
+	}
+        IsConfigInitialised = true;
+    }
+
+if (RainVisible == 1 && AtmosChaosLightingConfig == 0 && LevelInfo.GetCurrentStageID() == "w3r01")
+{
+    var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>("w3r01");
+
+	if (NeedleFxSceneDataInfo.pData == null)
+		return;
+for (int t = 0; t < 24; t++)
+	{
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, timeItems[t].weather.rain.filterColor.W);
+	float _lSStf = RFL_GET_PARAM(NeedleFxSceneDataInfo, timeItems[t].weather.rain.filterColor.W) * 0.65f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].weather.rain.filterColor.W, _lSStf);
+		}
+}

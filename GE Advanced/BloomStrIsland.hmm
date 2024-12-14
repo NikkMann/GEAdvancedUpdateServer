@@ -1,0 +1,133 @@
+Code "GE_BloomStrIsland"
+//
+	#include "Reflection" noemit
+
+	#lib "Reflection"
+	#using "NeedleFxSceneData"
+	#lib "HMM"
+	#lib "INI"
+
+	#import "Services"
+
+	static bool IsConfigInitialised = false;
+	static int BloomStrIsland = 0;
+//
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("GEAdvanced.mod");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "config.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		BloomStrIsland = INI.Parse<int>(ini["BloomSettings"]["BloomStrIsland"], BloomStrIsland);
+        IsConfigInitialised = true;
+    }
+        
+if (BloomStrIsland == 1)
+{
+string[] levelIds = {"w1f01", "w1h01", "w5r01", "w5t01", "w5t02", "w1r03", "w1r04", "w2r01", "w3r01", "w4r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, items[i].bloom.bloomScale);
+	float _bloomS = RFL_GET_PARAM(NeedleFxSceneDataInfo, items[i].bloom.bloomScale) * 1.25f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].bloom.bloomScale, _bloomS);
+}
+for (int w = 0; w < 7; w++) {
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, weatherItems[w].bloom.bloomScale);
+	float _bloomSw = RFL_GET_PARAM(NeedleFxSceneDataInfo, weatherItems[w].bloom.bloomScale) * 1.25f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[w].bloom.bloomScale, _bloomSw);
+}
+for (int t = 0; t < 24; t++) {
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, timeItems[t].bloom.bloomScale);
+	float _bloomSt = RFL_GET_PARAM(NeedleFxSceneDataInfo, timeItems[t].bloom.bloomScale) * 1.25f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].bloom.bloomScale, _bloomSt);
+}
+        }
+		}
+		
+if (BloomStrIsland == 2)
+{
+string[] levelIds = {"w1f01", "w1h01", "w5r01", "w5t01", "w5t02", "w1r03", "w1r04", "w2r01", "w3r01", "w4r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, items[i].bloom.bloomScale);
+	float _bloomS = RFL_GET_PARAM(NeedleFxSceneDataInfo, items[i].bloom.bloomScale) * 1.50f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].bloom.bloomScale, _bloomS);
+}
+for (int w = 0; w < 7; w++) {
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, weatherItems[w].bloom.bloomScale);
+	float _bloomSw = RFL_GET_PARAM(NeedleFxSceneDataInfo, weatherItems[w].bloom.bloomScale) * 1.50f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[w].bloom.bloomScale, _bloomSw);
+}
+for (int t = 0; t < 24; t++) {
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, timeItems[t].bloom.bloomScale);
+	float _bloomSt = RFL_GET_PARAM(NeedleFxSceneDataInfo, timeItems[t].bloom.bloomScale) * 1.50f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].bloom.bloomScale, _bloomSt);
+}
+        }
+		}
+if (BloomStrIsland == 3)
+{
+string[] levelIds = {"w1f01", "w1h01", "w5r01", "w5t01", "w5t02", "w1r03", "w1r04", "w2r01", "w3r01", "w4r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, items[i].bloom.bloomScale);
+	float _bloomS = RFL_GET_PARAM(NeedleFxSceneDataInfo, items[i].bloom.bloomScale) * 1.75f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].bloom.bloomScale, _bloomS);
+}
+for (int w = 0; w < 7; w++) {
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, weatherItems[w].bloom.bloomScale);
+	float _bloomSw = RFL_GET_PARAM(NeedleFxSceneDataInfo, weatherItems[w].bloom.bloomScale) * 1.75f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[w].bloom.bloomScale, _bloomSw);
+}
+for (int t = 0; t < 24; t++) {
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, timeItems[t].bloom.bloomScale);
+	float _bloomSt = RFL_GET_PARAM(NeedleFxSceneDataInfo, timeItems[t].bloom.bloomScale) * 1.75f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].bloom.bloomScale, _bloomSt);
+}
+        }
+    }
+if (BloomStrIsland == 4)
+{
+string[] levelIds = {"w1f01", "w1h01", "w5r01", "w5t01", "w5t02", "w1r03", "w1r04", "w2r01", "w3r01", "w4r01"};
+
+    foreach (string levelId in levelIds) {
+        var NeedleFxSceneDataInfo = Reflection.GetDataInfo<NeedleFxSceneData.Root>(levelId);
+
+        if (NeedleFxSceneDataInfo.pData == null)
+            continue;
+for (int i = 0; i < 16; i++) {
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, items[i].bloom.bloomScale);
+	float _bloomS = RFL_GET_PARAM(NeedleFxSceneDataInfo, items[i].bloom.bloomScale) * 2f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, items[i].bloom.bloomScale, _bloomS);
+}
+for (int w = 0; w < 7; w++) {
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, weatherItems[w].bloom.bloomScale);
+	float _bloomSw = RFL_GET_PARAM(NeedleFxSceneDataInfo, weatherItems[w].bloom.bloomScale) * 2f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, weatherItems[w].bloom.bloomScale, _bloomSw);
+}
+for (int t = 0; t < 24; t++) {
+	RFL_RESET_PARAM(NeedleFxSceneDataInfo, NeedleFxSceneData.Root, timeItems[t].bloom.bloomScale);
+	float _bloomSt = RFL_GET_PARAM(NeedleFxSceneDataInfo, timeItems[t].bloom.bloomScale) * 2f;
+	RFL_SET_PARAM(NeedleFxSceneDataInfo, timeItems[t].bloom.bloomScale, _bloomSt);
+}
+        }
+    }
