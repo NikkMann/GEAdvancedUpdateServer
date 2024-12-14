@@ -1,2 +1,2 @@
-## GE Advanced V2.11
+## GE Advanced Adv 2.11
 - First Release
