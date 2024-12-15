@@ -485,7 +485,7 @@ No performance impact."
                "Type": "MBSharp",
                "MinValue": 0,
                "MaxValue": 99,
-               "DefaultValue": "0"
+               "DefaultValue": "1"
 
       },
       {
@@ -1760,7 +1760,14 @@ No performance impact."
             "Description": [
                ""
             ]
-         },	 			 
+         },
+{
+            "DisplayName": "1.25",
+            "Value": "8",
+            "Description": [
+               ""
+            ]
+         },			 
       ],
 	  	  		"MBBPower": [
 	 {
