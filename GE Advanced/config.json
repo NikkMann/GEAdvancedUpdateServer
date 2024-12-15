@@ -471,7 +471,7 @@ Recommend High."
                "Type": "MBQuality",
                "MinValue": 0,
                "MaxValue": 99,
-               "DefaultValue": "2"
+               "DefaultValue": "1"
 
       },
 	  {
