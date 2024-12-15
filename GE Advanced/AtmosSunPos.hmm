@@ -3,7 +3,7 @@ Code "Kronos RheaSunPos"
 	#include "Reflection" noemit
 
 	#lib "Reflection"
-	#using "NeedleFxSceneData"
+	#lib "NeedleFxSceneData"
 	#lib "HMM"
 	#lib "INI"
  	#lib "GameManager"
